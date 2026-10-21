@@ -1,3 +1,4 @@
+import LoginForm from "@/components/login";
 import { ProfileSkeleton } from "@/components/skeletons/profile-skeleton";
 import useAppoitments from "@/hooks/use-appoitments";
 import { useAuth } from "@/hooks/use-auth";
@@ -10,11 +11,10 @@ import {
   ArrowRight,
   LogOut,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export default function Profile() {
   const { isAuthenticated, user, logout, isLoadingUser } = useAuth();
-  const navigate = useNavigate();
 
   const { appoitments } = useAppoitments();
   const appointmentsList = Array.isArray(appoitments)
@@ -61,7 +61,7 @@ export default function Profile() {
   }
 
   if (!isAuthenticated || !user) {
-    return navigate("/");
+    return <LoginForm isOpen />;
   }
 
   return (

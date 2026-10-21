@@ -8,15 +8,14 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useAuth } from "@/hooks/use-auth";
-
+import LoginForm from "@/components/login";
 import useCancelAppoitment from "@/hooks/mutation/appointments/use-cancel-appoitment";
 import { AppointmentsSkeleton } from "@/components/skeletons/appoitment-skeleton";
 
 export default function Appointments() {
   const { isAuthenticated, user } = useAuth();
-  const navigate = useNavigate();
 
   const { appoitments, isLoading } = useAppoitments();
   const cancelMutation = useCancelAppoitment();
@@ -24,7 +23,7 @@ export default function Appointments() {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   if (!isAuthenticated || !user) {
-    return navigate("/");
+    return <LoginForm isOpen />;
   }
 
   const formatPrice = (priceString: string) => {
