@@ -1,6 +1,6 @@
 import useBarbers from "@/hooks/use-barbers";
 import Title from "./title";
-import { Phone, PhoneCall, PhoneCallIcon, PhoneIcon } from "lucide-react";
+import { PhoneIcon } from "lucide-react";
 
 export default function Barbers() {
   const { barbers, isLoading, isError, error } = useBarbers();
