@@ -38,17 +38,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState<string | null>(() => authToken.get());
 
   const loginMutation = useLogin();
-  const logout = useLogout();
+  const clearSession = useLogout();
+
   const { user, isLoading: isLoadingUser } = useUserMe(token);
 
   const login = async (credentials: LoginCredentials) => {
     const result = await loginMutation.mutateAsync(credentials);
-
     setToken(result.token);
   };
 
-  const handleLogout = () => {
-    logout();
+  const logout = () => {
+    clearSession();
     setToken(null);
   };
 
@@ -56,12 +56,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     <AuthContext.Provider
       value={{
         token,
-        user,
+        user: token ? user : undefined,
         isAuthenticated: Boolean(token && user),
         isLoggingIn: loginMutation.isPending,
         isLoadingUser,
         login,
-        logout: handleLogout,
+        logout,
       }}
     >
       {children}

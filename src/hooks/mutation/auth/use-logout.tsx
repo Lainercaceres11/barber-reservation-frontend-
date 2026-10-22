@@ -7,6 +7,10 @@ export default function useLogout() {
   return () => {
     authToken.clear();
 
+    void queryClient.cancelQueries({
+      queryKey: ["auth", "me"],
+    });
+
     queryClient.setQueryData(["auth", "me"], undefined);
 
     queryClient.removeQueries({
