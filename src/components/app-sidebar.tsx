@@ -88,7 +88,7 @@ export function AppSidebar() {
 
   return (
     <>
-      <Sidebar className="dark">
+      <Sidebar className="dark bg-[#0a0a0a] text-white">
         <SidebarHeader>
           <div className="px-2 py-3 space-y-2">
             <div className="flex gap-4 items-center">
