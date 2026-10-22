@@ -7,6 +7,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import LoginForm from "@/components/login";
 import {
@@ -17,7 +18,7 @@ import {
   SquarePen,
   User,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/use-auth";
@@ -72,6 +73,14 @@ export function AppSidebar() {
   const registerMutation = useRegister();
   const { isAuthenticated, user, logout } = useAuth();
 
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  useEffect(() => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  }, [location.pathname, isMobile, setOpenMobile]);
+
   const handleLogut = () => {
     logout();
     navigate("/");
@@ -80,8 +89,9 @@ export function AppSidebar() {
   const handleLogin = () => {
     if (!isAuthenticated) {
       setActiveModal("login");
+    } else {
+      navigate("/profile");
     }
-    navigate("/");
   };
 
   const isBarber = user?.role === "barber";
@@ -142,6 +152,11 @@ export function AppSidebar() {
                       >
                         <Link
                           to={item.url}
+                          onClick={() => {
+                            if (isMobile) {
+                              setOpenMobile(false);
+                            }
+                          }}
                           className="relative flex h-full w-full items-center gap-3 px-3"
                         >
                           {isActive && (
