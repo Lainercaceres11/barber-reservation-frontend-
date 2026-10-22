@@ -1,8 +1,8 @@
 import { useCreateAppointment } from "@/hooks/use-create-appoitments";
 import { useState } from "react";
-import { toast } from "../ui/toast";
 
 import { DatePickerTime } from "../time-picker";
+import toast from "react-hot-toast";
 
 type AppointmentDateFormProps = {
   serviceId: number | null;
@@ -61,10 +61,8 @@ export default function AppointmentDateForm({
       },
       {
         onSuccess: () => {
-          toast.add({
-            type: "success",
-            title: "¡Cita solicitada!",
-            description: "Tu cita está pendiente de confirmación del barbero.",
+          toast.success("Cita agendada correctamente!", {
+            position: "bottom-right",
           });
         },
       },

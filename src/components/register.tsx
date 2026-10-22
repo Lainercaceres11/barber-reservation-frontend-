@@ -1,9 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react";
-import { toast } from "./ui/toast";
+import toast from "react-hot-toast";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const registerSchema = z.object({
   name: z.string().trim().min(2, "Ingresa tu nombre."),
@@ -29,7 +36,6 @@ export default function RegisterForm({
   onLoginClick,
   onSubmitRegister,
 }: RegisterFormProps) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const [submitError, setSubmitError] = useState("");
 
   const {
@@ -50,16 +56,11 @@ export default function RegisterForm({
     },
   });
 
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-
-    if (open && !dialog.open) {
-      dialog.showModal();
-    } else if (!open && dialog.open) {
-      dialog.close();
+  const handleOpenChange = (isOpen: boolean) => {
+    if (!isOpen) {
+      handleClose();
     }
-  }, [open]);
+  };
 
   const handleClose = () => {
     reset();
@@ -74,13 +75,15 @@ export default function RegisterForm({
     try {
       await onSubmitRegister(data);
 
-      toast.add({
-        type: "success",
-        title: "Usuario creado",
-        description: "Usuario registrado correctamente.",
+      toast.success("Usuario registrado correctamente", {
+        position: "bottom-right",
       });
+
       reset();
+      clearErrors();
+      onClose();
     } catch (error) {
+      toast.error("No se pudo registrar el usuario");
       setSubmitError(
         error instanceof Error
           ? error.message
@@ -89,52 +92,49 @@ export default function RegisterForm({
     }
   };
 
-  return (
-    <dialog
-      ref={dialogRef}
-      onCancel={handleClose}
-      className="m-auto w-[calc(100%-2rem)] max-w-xl rounded-xl border border-neutral-800 bg-[#111111] p-0 text-white shadow-2xl shadow-black/50 backdrop:bg-black/75 backdrop:backdrop-blur-sm"
-    >
-      <div className="p-8">
-        <button
-          type="button"
-          onClick={handleClose}
-          className="absolute right-4 top-4 text-neutral-400 transition-colors duration-200 hover:text-white"
-          aria-label="Cerrar registro"
-        >
-          <X size={20} strokeWidth={2} />
-        </button>
+  const handleLoginClick = () => {
+    reset();
+    clearErrors();
+    setSubmitError("");
+    onLoginClick();
+  };
 
-        <div className="mb-7 text-center">
+  return (
+    <Dialog open={open} onOpenChange={handleOpenChange}>
+      <DialogContent className="w-[calc(100%-2rem)] max-w-xl! gap-0 rounded-xl border border-neutral-800 bg-[#111111] p-8 text-white shadow-2xl shadow-black/50 [&>button:last-child]:text-neutral-400 [&>button:last-child]:hover:text-white">
+        <DialogHeader className="mb-7 text-center">
           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#d4b06a]">
             KLIP BARBERSHOP
           </p>
 
-          <h2 className="text-2xl font-bold">Crea tu cuenta</h2>
+          <DialogTitle className="text-2xl font-bold text-white">
+            Crea tu cuenta
+          </DialogTitle>
 
-          <p className="mt-2 text-sm text-gray-400">
+          <DialogDescription className="mt-2 text-sm text-gray-400">
             Regístrate para gestionar tus citas.
-          </p>
-        </div>
+          </DialogDescription>
+        </DialogHeader>
 
         <form
           noValidate
-          onSubmit={handleSubmit(onSubmit, (validationErrors) => {
-            console.log("Errores de validación:", validationErrors);
-          })}
+          onSubmit={handleSubmit(onSubmit)}
           className="space-y-4"
         >
           <div>
             <label htmlFor="register-name" className="mb-1 block text-sm">
               Nombre completo
             </label>
+
             <input
               id="register-name"
               autoComplete="name"
+              aria-invalid={!!errors.name}
               {...register("name")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="Tu nombre"
             />
+
             {errors.name && (
               <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
             )}
@@ -144,14 +144,17 @@ export default function RegisterForm({
             <label htmlFor="register-email" className="mb-1 block text-sm">
               Correo electrónico
             </label>
+
             <input
               id="register-email"
               type="email"
               autoComplete="email"
+              aria-invalid={!!errors.email}
               {...register("email")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="correo@ejemplo.com"
             />
+
             {errors.email && (
               <p className="mt-1 text-sm text-red-400">
                 {errors.email.message}
@@ -163,10 +166,12 @@ export default function RegisterForm({
             <label htmlFor="register-phone" className="mb-1 block text-sm">
               Teléfono <span className="text-gray-500">(opcional)</span>
             </label>
+
             <input
               id="register-phone"
               type="tel"
               autoComplete="tel"
+              aria-invalid={!!errors.phone}
               {...register("phone")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="Tu número de teléfono"
@@ -177,14 +182,17 @@ export default function RegisterForm({
             <label htmlFor="register-password" className="mb-1 block text-sm">
               Contraseña
             </label>
+
             <input
               id="register-password"
               type="password"
               autoComplete="new-password"
+              aria-invalid={!!errors.password}
               {...register("password")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="Mínimo 8 caracteres"
             />
+
             {errors.password && (
               <p className="mt-1 text-sm text-red-400">
                 {errors.password.message}
@@ -211,7 +219,7 @@ export default function RegisterForm({
           ¿Ya tienes una cuenta?{" "}
           <button
             type="button"
-            onClick={onLoginClick}
+            onClick={handleLoginClick}
             className="font-bold text-[#d4b06a] hover:underline"
           >
             Inicia sesión
@@ -225,7 +233,7 @@ export default function RegisterForm({
         >
           Cancelar
         </button>
-      </div>
-    </dialog>
+      </DialogContent>
+    </Dialog>
   );
 }

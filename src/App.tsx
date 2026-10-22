@@ -3,7 +3,7 @@ import "./App.css";
 import { AuthProvider } from "./context/auth-context";
 import QueryProvider from "./providers/query-provider";
 import RoutesApp from "./routes/route";
-import { Toaster } from "./components/ui/toast";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (

@@ -3,8 +3,16 @@ import { useAuth } from "../hooks/use-auth";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type FormData = {
   email: string;
@@ -54,51 +62,51 @@ export default function LoginForm({
       await login(data);
       closeDialog();
     } catch {
-      setFormError("root", { message: "Correo o contraseña incorrectos" });
+      setFormError("root", {
+        message: "Correo o contraseña incorrectos",
+      });
     }
   };
 
-  if (!isOpen) return null;
+  const handleOpenChange = (open: boolean) => {
+    if (!open) {
+      closeDialog();
+    }
+  };
+
+  const handleRegisterClick = () => {
+    onRegisterClick?.();
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0">
-      <div
-        className="absolute inset-0 bg-black/75 backdrop-blur-sm transition-opacity"
-        onClick={closeDialog}
-      />
-
-      <div className="relative w-full max-w-120 rounded-xl border border-neutral-800 bg-[#111111] p-8 text-white shadow-2xl shadow-black/50">
-        <button
-          onClick={closeDialog}
-          className="absolute right-4 top-4 text-neutral-400 transition-colors duration-200 hover:text-white"
-          aria-label="Cerrar"
-          type="button"
-        >
-          <X size={20} strokeWidth={2} />
-        </button>
-
-        <div className="mb-8">
-          <h2 className="mb-2 text-3xl font-black uppercase tracking-wider">
+    <Dialog open={isOpen} onOpenChange={handleOpenChange}>
+      <DialogContent className="w-[calc(100%-2rem)] max-w-xl! gap-0 rounded-xl border border-neutral-800 bg-[#111111] p-8 text-white shadow-2xl shadow-black/50 [&>button:last-child]:text-neutral-400 [&>button:last-child]:hover:text-white">
+        <DialogHeader className="mb-8 space-y-2 text-left">
+          <DialogTitle className="text-3xl font-black uppercase tracking-wider text-white">
             DE VUELTA EN KLIP
-          </h2>
-          <p className="text-sm text-neutral-400">
+          </DialogTitle>
+
+          <DialogDescription className="text-sm text-neutral-400">
             Un buen estilo nunca pasa de moda.
-          </p>
-        </div>
+          </DialogDescription>
+        </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="flex flex-col gap-2">
-            <label htmlFor="email" className="text-sm font-medium">
+            <label htmlFor="login-email" className="text-sm font-medium">
               Correo electrónico:
             </label>
+
             <input
-              id="email"
+              id="login-email"
               type="email"
               autoComplete="email"
               {...register("email")}
               placeholder="tu@correo.com"
+              aria-invalid={!!errors.email}
               className="w-full rounded-lg border border-neutral-800 bg-[#0a0a0a] px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all duration-200 focus:border-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400"
             />
+
             {errors.email && (
               <p className="text-sm text-red-500" role="alert">
                 {errors.email.message}
@@ -107,17 +115,20 @@ export default function LoginForm({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor="password" className="text-sm font-medium">
+            <label htmlFor="login-password" className="text-sm font-medium">
               Contraseña:
             </label>
+
             <input
-              id="password"
+              id="login-password"
               type="password"
               autoComplete="current-password"
               {...register("password")}
               placeholder="Tu contraseña"
+              aria-invalid={!!errors.password}
               className="w-full rounded-lg border border-neutral-800 bg-[#0a0a0a] px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all duration-200 focus:border-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400"
             />
+
             {errors.password && (
               <p className="text-sm text-red-500" role="alert">
                 {errors.password.message}
@@ -126,7 +137,7 @@ export default function LoginForm({
           </div>
 
           {errors.root && (
-            <p className="text-red-500 text-center text-sm">
+            <p className="text-center text-sm text-red-500" role="alert">
               {errors.root.message}
             </p>
           )}
@@ -145,15 +156,16 @@ export default function LoginForm({
           <span className="text-neutral-400">
             ¿Primera vez en KLIP Barber?{" "}
           </span>
+
           <button
             type="button"
-            onClick={onRegisterClick}
+            onClick={handleRegisterClick}
             className="font-bold text-[#d4b06a] transition-colors duration-200 hover:text-[#c2a05e]"
           >
             Crea tu cuenta
           </button>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
