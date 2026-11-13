@@ -101,17 +101,17 @@ export default function RegisterForm({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-xl! gap-0 rounded-xl border border-neutral-800 bg-[#111111] p-8 text-white shadow-2xl shadow-black/50 [&>button:last-child]:text-neutral-400 [&>button:last-child]:hover:text-white">
-        <DialogHeader className="mb-7 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#d4b06a]">
+      <DialogContent className="w-[calc(100%-2rem)] max-w-lg! gap-0 rounded-sm border border-white/10 bg-pine p-6 text-bone shadow-2xl shadow-black/40 sm:p-8 [&>button:last-child]:text-neutral-400 [&>button:last-child]:hover:text-bone">
+        <DialogHeader className="mb-7 text-left">
+          <p className="mb-2 text-xs font-medium tracking-[0.16em] text-brass">
             KLIP BARBERSHOP
           </p>
 
-          <DialogTitle className="text-2xl font-bold text-white">
+          <DialogTitle className="font-heading text-2xl font-medium tracking-tight text-bone">
             Crea tu cuenta
           </DialogTitle>
 
-          <DialogDescription className="mt-2 text-sm text-gray-400">
+          <DialogDescription className="mt-2 text-sm leading-6 text-neutral-400">
             Regístrate para gestionar tus citas.
           </DialogDescription>
         </DialogHeader>
@@ -132,7 +132,7 @@ export default function RegisterForm({
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? "register-name-error" : undefined}
               {...register("name")}
-              className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
+              className="w-full rounded-sm border border-white/10 bg-ink px-4 py-3 text-bone outline-none transition focus:border-brass"
               placeholder="Tu nombre"
             />
 
@@ -157,7 +157,7 @@ export default function RegisterForm({
                 errors.email ? "register-email-error" : undefined
               }
               {...register("email")}
-              className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
+              className="w-full rounded-sm border border-white/10 bg-ink px-4 py-3 text-bone outline-none transition focus:border-brass"
               placeholder="correo@ejemplo.com"
             />
 
@@ -179,7 +179,7 @@ export default function RegisterForm({
               autoComplete="tel"
               aria-invalid={!!errors.phone}
               {...register("phone")}
-              className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
+              className="w-full rounded-sm border border-white/10 bg-ink px-4 py-3 text-bone outline-none transition focus:border-brass"
               placeholder="Tu número de teléfono"
             />
           </div>
@@ -198,7 +198,7 @@ export default function RegisterForm({
                 errors.password ? "register-password-error" : undefined
               }
               {...register("password")}
-              className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
+              className="w-full rounded-sm border border-white/10 bg-ink px-4 py-3 text-bone outline-none transition focus:border-brass"
               placeholder="Mínimo 8 caracteres"
             />
 
@@ -221,18 +221,18 @@ export default function RegisterForm({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-[#d4b06a] px-4 py-3 font-bold text-black transition hover:bg-[#e4c17f] disabled:cursor-not-allowed disabled:opacity-60"
+            className="min-h-12 w-full rounded-sm bg-brass px-4 py-3 font-semibold text-ink transition-colors hover:bg-brass-light disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? "Creando cuenta..." : "Crear cuenta"}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-gray-400">
+        <p className="mt-6 text-center text-sm text-neutral-400">
           ¿Ya tienes una cuenta?{" "}
           <button
             type="button"
             onClick={handleLoginClick}
-            className="font-bold text-[#d4b06a] hover:underline"
+            className="font-medium text-brass hover:text-brass-light hover:underline"
           >
             Inicia sesión
           </button>
@@ -241,7 +241,7 @@ export default function RegisterForm({
         <button
           type="button"
           onClick={handleClose}
-          className="mt-4 w-full text-sm text-gray-500 transition hover:text-white"
+          className="mt-4 min-h-10 w-full text-sm text-neutral-500 transition hover:text-bone"
         >
           Cancelar
         </button>

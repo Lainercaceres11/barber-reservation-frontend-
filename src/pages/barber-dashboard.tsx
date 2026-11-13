@@ -271,7 +271,7 @@ export default function BarberDashboard() {
       <section
         aria-live="polite"
         aria-busy="true"
-        className="flex min-h-screen items-center justify-center bg-[#0a0a0a] text-white"
+        className="flex min-h-screen items-center justify-center bg-ink text-bone"
       >
         <p className="text-sm text-neutral-400">Cargando agenda...</p>
       </section>
@@ -282,7 +282,7 @@ export default function BarberDashboard() {
     return (
       <section
         role="alert"
-        className="flex min-h-screen flex-col items-center justify-center gap-3 bg-[#0a0a0a] text-white"
+        className="flex min-h-screen flex-col items-center justify-center gap-3 bg-ink text-bone"
       >
         <p className="text-red-400">Error al cargar las citas.</p>
         <p className="text-sm text-neutral-500">
@@ -293,17 +293,17 @@ export default function BarberDashboard() {
   }
 
   return (
-    <section className="min-h-screen bg-[#0a0a0a] px-4 py-10 font-sans text-white sm:px-8">
+    <section className="min-h-screen bg-ink px-5 py-10 text-bone sm:px-8 sm:py-14">
       <div className="mx-auto max-w-5xl">
-        <header className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
+        <header className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <div className="mb-2 flex items-center gap-2 text-xs font-semibold tracking-widest text-neutral-400">
-              <span className="h-px w-8 bg-neutral-600" />
+            <div className="mb-3 flex items-center gap-3 text-xs font-medium tracking-[0.18em] text-brass">
+              <span aria-hidden="true" className="h-px w-8 bg-brass/60" />
               ESPACIO DEL BARBERO
             </div>
 
-            <h1 className="mb-2 text-3xl font-black tracking-tight sm:text-4xl">
-              BUEN DÍA, {barberName}.
+            <h1 className="mb-2 font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+              Buen día, {barberName}.
             </h1>
 
             <p className="text-sm text-neutral-400">
@@ -313,50 +313,50 @@ export default function BarberDashboard() {
 
         </header>
 
-        <hr className="mb-8 border-neutral-800" />
+        <div className="mb-8 border-t border-white/10" />
 
-        <div className="mb-10 grid grid-cols-2 gap-6 sm:grid-cols-4">
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-wider text-neutral-400">
+        <div className="mb-10 grid grid-cols-2 border-y border-white/10 sm:grid-cols-4">
+          <div className="border-b border-white/10 py-5 pr-4 sm:border-b-0 sm:border-r sm:pr-6">
+            <p className="mb-3 text-xs tracking-wide text-neutral-400">
               Citas del día
             </p>
-            <p className="text-4xl font-bold">{stats.total}</p>
+            <p className="font-heading text-3xl font-medium text-bone">{stats.total}</p>
           </div>
 
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-wider text-neutral-400">
+          <div className="border-b border-white/10 py-5 pl-4 sm:border-b-0 sm:border-r sm:px-6">
+            <p className="mb-3 text-xs tracking-wide text-neutral-400">
               Pendientes
             </p>
-            <p className="text-4xl font-bold text-yellow-500">
+            <p className="font-heading text-3xl font-medium text-brass">
               {stats.pending}
             </p>
           </div>
 
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-wider text-neutral-400">
+          <div className="py-5 pr-4 sm:border-r sm:px-6">
+            <p className="mb-3 text-xs tracking-wide text-neutral-400">
               Confirmadas
             </p>
-            <p className="text-4xl font-bold text-blue-400">
+            <p className="font-heading text-3xl font-medium text-blue-300">
               {stats.confirmed}
             </p>
           </div>
 
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-wider text-neutral-400">
+          <div className="py-5 pl-4 sm:pl-6">
+            <p className="mb-3 text-xs tracking-wide text-neutral-400">
               Completadas
             </p>
-            <p className="text-4xl font-bold text-green-500">
+            <p className="font-heading text-3xl font-medium text-green-400">
               {stats.completed}
             </p>
           </div>
         </div>
 
-        <hr className="mb-8 border-neutral-800" />
+        <div className="mb-8 border-t border-white/10" />
 
         <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-center gap-3">
-            <Calendar size={24} className="text-neutral-400" />
-            <h2 className="text-lg font-bold tracking-wide sm:text-2xl">
+            <Calendar size={20} className="text-brass" aria-hidden="true" />
+            <h2 className="font-heading text-lg font-medium tracking-tight text-bone sm:text-2xl">
               {formatDateHeader(selectedDate)}
             </h2>
           </div>
@@ -366,7 +366,7 @@ export default function BarberDashboard() {
               type="button"
               aria-label="Día anterior"
               onClick={() => changeDay(-1)}
-              className="rounded p-1 text-neutral-400 transition-colors hover:text-white"
+              className="flex size-10 items-center justify-center text-neutral-400 transition-colors hover:text-brass"
             >
               <ChevronLeft size={20} />
             </button>
@@ -374,7 +374,7 @@ export default function BarberDashboard() {
             <button
               type="button"
               onClick={() => setSelectedDate(new Date())}
-              className="rounded-lg border border-neutral-800 px-5 py-1.5 text-sm transition-colors hover:bg-neutral-900"
+              className="min-h-10 border border-white/15 px-5 py-2 text-sm text-neutral-300 transition-colors hover:border-brass hover:text-brass"
             >
               Hoy
             </button>
@@ -383,7 +383,7 @@ export default function BarberDashboard() {
               type="button"
               aria-label="Día siguiente"
               onClick={() => changeDay(1)}
-              className="rounded p-1 text-neutral-400 transition-colors hover:text-white"
+              className="flex size-10 items-center justify-center text-neutral-400 transition-colors hover:text-brass"
             >
               <ChevronRight size={20} />
             </button>
@@ -394,7 +394,7 @@ export default function BarberDashboard() {
         <div
           role="group"
           aria-label="Filtrar citas por estado"
-          className="mb-2 flex gap-2 overflow-x-auto border-b border-neutral-800 pb-4"
+          className="mb-2 flex gap-5 overflow-x-auto border-b border-white/10"
         >
           {tabs.map((tab) => (
             <button
@@ -402,10 +402,10 @@ export default function BarberDashboard() {
               type="button"
               aria-pressed={activeTab === tab.value}
               onClick={() => setActiveTab(tab.value)}
-              className={`whitespace-nowrap rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${
+              className={`whitespace-nowrap border-b-2 px-1 py-3 text-sm font-medium transition-colors ${
                 activeTab === tab.value
-                  ? "bg-[#2a2514] text-[#d4b06a]"
-                  : "text-neutral-400 hover:bg-neutral-900 hover:text-white"
+                  ? "border-brass text-brass"
+                  : "border-transparent text-neutral-400 hover:text-bone"
               }`}
             >
               {tab.label}
@@ -431,7 +431,7 @@ export default function BarberDashboard() {
 
         <div className="flex flex-col">
           {filteredAppointments.length === 0 ? (
-            <div className="mt-4 rounded-xl border border-neutral-800 bg-[#111111] py-16 text-center">
+            <div             className="mt-4 border-y border-white/10 bg-pine py-16 text-center">
               <Calendar size={30} className="mx-auto mb-3 text-neutral-600" />
 
               <p className="text-neutral-300">
@@ -453,15 +453,15 @@ export default function BarberDashboard() {
               return (
                 <article
                   key={appointment.id}
-                  className="flex flex-col justify-between gap-4 rounded-lg border-b border-neutral-800/50 px-2 py-6 transition-colors hover:bg-neutral-900/20 sm:flex-row sm:items-center"
+                  className="flex flex-col justify-between gap-4 border-b border-white/10 px-2 py-6 transition-colors hover:bg-pine sm:flex-row sm:items-center"
                 >
                   <div className="flex items-start gap-6 sm:items-center">
-                    <span className="w-12 shrink-0 pt-1 text-sm font-bold text-[#d4b06a] sm:pt-0">
+                    <span className="w-12 shrink-0 pt-1 text-sm font-semibold text-brass sm:pt-0">
                       {formatTime(appointment.starts_at)}
                     </span>
 
                     <div className="min-w-0">
-                      <h3 className="mb-1 wrap-break-word text-base font-bold capitalize text-white">
+                      <h3 className="mb-1 wrap-break-word font-heading text-base font-medium capitalize text-bone">
                         {appointment.customer?.name ?? "Cliente sin nombre"}
                       </h3>
 

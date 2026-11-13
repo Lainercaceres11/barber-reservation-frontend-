@@ -1,7 +1,7 @@
 export function ProfileSkeleton() {
   return (
     <section
-      className="min-h-screen animate-pulse bg-[#0a0a0a] px-4 py-12 font-sans sm:px-6 lg:px-8"
+      className="min-h-screen animate-pulse bg-ink px-5 py-12 font-sans text-bone sm:px-8"
       aria-label="Cargando perfil"
       aria-busy="true"
     >
@@ -10,10 +10,10 @@ export function ProfileSkeleton() {
         <div className="mb-8 h-10 w-48 rounded bg-neutral-800" />
 
       
-        <div className="mb-6 flex flex-col items-center justify-between gap-6 rounded-2xl border border-neutral-800 bg-[#111111] p-6 sm:flex-row sm:items-start sm:p-8">
+        <div         className="mb-6 flex flex-col items-center justify-between gap-6 border-y border-white/10 bg-pine p-6 sm:flex-row sm:items-start sm:p-8">
           <div className="flex flex-col items-center gap-6 sm:flex-row">
        
-            <div className="h-24 w-24 shrink-0 rounded-xl bg-[#2a2514]" />
+            <div className="h-24 w-24 shrink-0 bg-brass/20" />
 
           
             <div className="flex w-full flex-col items-center gap-3 sm:items-start">
@@ -30,7 +30,7 @@ export function ProfileSkeleton() {
           {[1, 2, 3].map((item) => (
             <div
               key={item}
-              className="flex flex-col items-center justify-center rounded-2xl border border-neutral-800 bg-[#111111] p-6"
+              className="flex flex-col items-center justify-center border-t border-white/10 p-6"
             >
               <div className="mb-3 h-6 w-6 rounded bg-neutral-800" />
               <div className="mb-2 h-9 w-12 rounded bg-neutral-800" />
@@ -40,7 +40,7 @@ export function ProfileSkeleton() {
         </div>
 
        
-        <div className="rounded-2xl border border-neutral-800 bg-[#111111] p-6 sm:p-8">
+        <div className="border-t border-white/10 p-6 sm:p-8">
           <div className="mb-6 h-4 w-36 rounded bg-neutral-800" />
 
           <div className="flex flex-col gap-3">
@@ -48,7 +48,7 @@ export function ProfileSkeleton() {
               <div
                 key={item}
                 className={`flex items-center justify-between rounded-xl border border-neutral-800 p-4 ${
-                  item === 3 ? "bg-[#1c0f0f]" : "bg-[#1a1a1a]"
+                  item === 3 ? "bg-red-950/30" : "bg-pine"
                 }`}
               >
                 <div className="flex items-center gap-4">

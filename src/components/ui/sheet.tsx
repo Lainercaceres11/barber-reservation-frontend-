@@ -26,7 +26,7 @@ function SheetOverlay({ className, ...props }: SheetPrimitive.Backdrop.Props) {
     <SheetPrimitive.Backdrop
       data-slot="sheet-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/10 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-xs",
+        "fixed inset-0 z-50 bg-black/70 transition-opacity duration-150 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-backdrop-filter:backdrop-blur-sm",
         className
       )}
       {...props}
@@ -51,7 +51,7 @@ function SheetContent({
         data-slot="sheet-content"
         data-side={side}
         className={cn(
-          "dark fixed z-50 flex flex-col gap-4 bg-[#0a0a0a] text-white shadow-lg transition duration-200 ease-in-out",
+          "dark fixed z-50 flex flex-col gap-4 bg-ink text-bone shadow-lg transition duration-200 ease-in-out",
           "data-ending-style:opacity-0 data-starting-style:opacity-0",
           "data-[side=left]:inset-y-0 data-[side=left]:left-0 data-[side=left]:h-full data-[side=left]:w-3/4 data-[side=left]:border-r",
           "data-[side=right]:inset-y-0 data-[side=right]:right-0 data-[side=right]:h-full data-[side=right]:w-3/4 data-[side=right]:border-l",
@@ -73,7 +73,7 @@ function SheetContent({
             }
           >
             <XIcon />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">Cerrar</span>
           </SheetPrimitive.Close>
         )}
       </SheetPrimitive.Popup>

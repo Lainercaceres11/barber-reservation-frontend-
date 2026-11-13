@@ -9,20 +9,20 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#111110] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="border-t border-white/10 bg-ink text-bone">
+      <div className="mx-auto max-w-7xl px-6 py-14 sm:px-8 lg:py-16">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-5">
             <Link to="/" className="inline-flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-lg bg-yellow-400 text-black">
+              <div className="flex size-10 items-center justify-center rounded-sm bg-brass text-ink">
                 <Scissors size={23} />
               </div>
 
               <div>
-                <h2 className="text-lg font-extrabold tracking-wider">
+                <h2 className="font-heading text-lg font-semibold tracking-[0.12em]">
                   Klip
                 </h2>
-                <p className="text-xs tracking-[0.3em] text-yellow-400">
+                <p className="text-[10px] tracking-[0.24em] text-brass">
                   BARBERÍA
                 </p>
               </div>
@@ -54,7 +54,7 @@ export default function Footer() {
 
           {/* Navegación */}
           <div>
-            <h3 className="mb-5 text-sm font-bold uppercase tracking-widest">
+            <h3 className="mb-5 font-heading text-sm font-medium text-bone">
               Enlaces rápidos
             </h3>
 
@@ -63,11 +63,12 @@ export default function Footer() {
                 <li key={link.url}>
                   <Link
                     to={link.url}
-                    className="group inline-flex items-center gap-2 text-sm text-neutral-400 transition-colors duration-200 hover:text-yellow-400"
+                    className="group inline-flex items-center gap-2 text-sm text-neutral-400 transition-colors duration-200 hover:text-brass-light"
                   >
                     {link.title}
                     <ArrowUpRight
                       size={14}
+                      aria-hidden="true"
                       className="opacity-0 transition-opacity group-hover:opacity-100"
                     />
                   </Link>
@@ -78,12 +79,12 @@ export default function Footer() {
 
           {/* Horarios */}
           <div>
-            <h3 className="mb-5 text-sm font-bold uppercase tracking-widest">
+            <h3 className="mb-5 font-heading text-sm font-medium text-bone">
               Horarios de atención
             </h3>
 
             <div className="mb-4 flex items-start gap-3">
-              <Clock size={18} className="mt-0.5 shrink-0 text-yellow-400" />
+              <Clock size={18} className="mt-0.5 shrink-0 text-brass" aria-hidden="true" />
               <div className="space-y-3 text-sm">
                 <div>
                   <p className="text-neutral-200">Lunes a viernes</p>
@@ -101,7 +102,7 @@ export default function Footer() {
 
                 <div>
                   <p className="text-neutral-200">Domingo</p>
-                  <p className="mt-1 text-yellow-400">Cerrado</p>
+                  <p className="mt-1 text-brass-light">Cerrado</p>
                 </div>
               </div>
             </div>
@@ -109,13 +110,13 @@ export default function Footer() {
 
           {/* Contacto */}
           <div>
-            <h3 className="mb-5 text-sm font-bold uppercase tracking-widest">
+            <h3 className="mb-5 font-heading text-sm font-medium text-bone">
               Contáctanos
             </h3>
 
             <ul className="space-y-5">
               <li className="flex items-start gap-3">
-                <MapPin size={19} className="mt-0.5 shrink-0 text-yellow-400" />
+                <MapPin size={19} className="mt-0.5 shrink-0 text-brass" aria-hidden="true" />
                 <div className="text-sm">
                   <p className="text-neutral-200">Visita nuestra barbería</p>
                   <p className="mt-1 leading-6 text-neutral-400">
@@ -125,7 +126,7 @@ export default function Footer() {
               </li>
 
               <li className="flex items-start gap-3">
-                <Phone size={18} className="mt-0.5 shrink-0 text-yellow-400" />
+                <Phone size={18} className="mt-0.5 shrink-0 text-brass" aria-hidden="true" />
                 <div className="text-sm">
                   <p className="text-neutral-200">Llámanos</p>
                   <a
@@ -140,10 +141,10 @@ export default function Footer() {
 
             <Link
               to="/books"
-              className="mt-6 inline-flex items-center gap-2 rounded-lg bg-yellow-400 px-5 py-3 text-sm font-bold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300"
+              className="mt-6 inline-flex min-h-11 items-center gap-3 rounded-sm bg-brass px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-brass-light"
             >
               Reserva tu cita
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>
         </div>
@@ -157,7 +158,7 @@ export default function Footer() {
 
           <p className="flex items-center gap-2">
             Creado con precisión
-            <Scissors size={14} className="text-yellow-400" />
+            <Scissors size={14} className="text-brass" aria-hidden="true" />
           </p>
         </div>
       </div>

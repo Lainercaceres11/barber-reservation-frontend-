@@ -39,19 +39,19 @@ export default function Profile() {
       label: "Próximas",
       value: upcomingCount,
       icon: Calendar,
-      color: "text-[#d4b06a]",
+      color: "text-brass",
     },
     {
       label: "Completadas",
       value: completedCount,
       icon: Scissors,
-      color: "text-green-500",
+      color: "text-emerald-300",
     },
     {
       label: "Visitas realizadas",
       value: totalVisits,
       icon: Star,
-      color: "text-white",
+      color: "text-neutral-200",
     },
   ];
 
@@ -64,22 +64,22 @@ export default function Profile() {
   }
 
   return (
-    <section className="bg-[#0a0a0a] min-h-screen py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-black text-white uppercase tracking-wider mb-8">
+    <section className="min-h-screen bg-ink px-5 py-10 text-bone sm:px-8 sm:py-14">
+      <div className="mx-auto max-w-4xl">
+        <h1 className="mb-8 font-heading text-3xl font-medium tracking-tight sm:text-4xl">
           Perfil
         </h1>
 
-        <div className="bg-[#111111] border border-neutral-800 rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 mb-6">
+        <div className="mb-8 flex flex-col items-center gap-6 border-y border-white/10 bg-pine px-5 py-7 sm:flex-row sm:px-8">
           <div className="flex flex-col sm:flex-row items-center gap-6">
-            <div className="w-24 h-24 rounded-xl bg-[#2a2514] flex items-center justify-center shrink-0">
-              <span className="text-4xl font-bold text-[#d4b06a]">
+            <div className="flex size-20 shrink-0 items-center justify-center border border-brass/30 bg-pine-soft">
+              <span className="font-heading text-3xl font-medium text-brass">
                 {user.name.charAt(0).toUpperCase()}
               </span>
             </div>
 
             <div className="text-center sm:text-left">
-              <h2 className="text-2xl font-bold text-white mb-2 uppercase tracking-wide">
+              <h2 className="mb-2 font-heading text-2xl font-medium tracking-tight text-bone">
                 {user.name}
               </h2>
               <div className="flex items-center justify-center sm:justify-start text-neutral-400 text-sm">
@@ -91,65 +91,67 @@ export default function Profile() {
 
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          {stats.map((stat, index) => {
+        <div className="mb-10 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-8">
+          {stats.map((stat) => {
             const Icon = stat.icon;
             return (
               <div
-                key={index}
-                className="bg-[#111111] border border-neutral-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:border-neutral-700 transition-colors"
+                key={stat.label}
+                className="flex flex-col items-start border-t border-white/15 py-5"
               >
                 <Icon
                   size={24}
-                  className={`${stat.color} mb-3`}
+                  className={`${stat.color} mb-5`}
                   strokeWidth={1.5}
                 />
-                <span className="text-3xl font-bold text-white mb-1">
+                <span className="mb-1 font-heading text-3xl font-medium text-bone">
                   {stat.value}
                 </span>
-                <span className="text-neutral-500 text-xs">{stat.label}</span>
+                <span className="text-sm text-neutral-400">{stat.label}</span>
               </div>
             );
           })}
         </div>
 
-        <div className="bg-[#111111] border border-neutral-800 rounded-2xl p-6 sm:p-8">
-          <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-6">
-            Acciones rapidas
+        <div className="border-t border-white/15 pt-6">
+          <h3 className="mb-4 font-heading text-lg font-medium text-bone">
+            Acciones rápidas
           </h3>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col">
             <Link
               to="/books"
-              className="group w-full flex items-center justify-between p-4 rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-transparent hover:border-neutral-700 transition-all duration-200"
+              className="group flex min-h-14 w-full items-center justify-between border-b border-white/10 px-2 py-4 transition-colors hover:bg-pine"
             >
-              <div className="flex items-center gap-4 text-white">
-                <Calendar size={20} className="text-[#d4b06a]" />
+              <div className="flex items-center gap-4 text-bone">
+                <Calendar size={18} className="text-brass" />
                 <span className="font-medium text-sm">Crear nueva cita</span>
               </div>
               <ArrowRight
                 size={18}
-                className="text-neutral-600 group-hover:text-white transition-colors"
+                aria-hidden="true"
+                className="text-neutral-500 transition-colors group-hover:text-brass"
               />
             </Link>
 
             <Link
               to="/appointments"
-              className="group w-full flex items-center justify-between p-4 rounded-xl bg-[#1a1a1a] hover:bg-[#222222] border border-transparent hover:border-neutral-700 transition-all duration-200"
+              className="group flex min-h-14 w-full items-center justify-between border-b border-white/10 px-2 py-4 transition-colors hover:bg-pine"
             >
-              <div className="flex items-center gap-4 text-white">
-                <Scissors size={20} className="text-[#d4b06a]" />
+              <div className="flex items-center gap-4 text-bone">
+                <Scissors size={18} className="text-brass" />
                 <span className="font-medium text-sm">Ver mis citas</span>
               </div>
               <ArrowRight
                 size={18}
-                className="text-neutral-600 group-hover:text-white transition-colors"
+                aria-hidden="true"
+                className="text-neutral-500 transition-colors group-hover:text-brass"
               />
             </Link>
 
             <button
               onClick={logout}
-              className="group w-full flex items-center justify-between p-4 rounded-xl bg-[#1c0f0f] hover:bg-[#2a1515] border border-red-900/30 hover:border-red-900/60 transition-all duration-200 mt-2"
+              className="group mt-3 flex min-h-14 w-full items-center justify-between border-b border-red-900/40 px-2 py-4 text-red-300 transition-colors hover:bg-red-950/30"
             >
               <div className="flex items-center gap-4 text-red-500">
                 <LogOut size={20} />
@@ -157,6 +159,7 @@ export default function Profile() {
               </div>
               <ArrowRight
                 size={18}
+                aria-hidden="true"
                 className="text-red-900/50 group-hover:text-red-500 transition-colors"
               />
             </button>

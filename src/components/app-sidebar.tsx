@@ -60,7 +60,7 @@ const menuItems = [
   },
   {
     icon: <SquarePen />,
-    title: "Tú espacio",
+    title: "Tu espacio",
     url: "/barber-panel",
   },
 ];
@@ -98,17 +98,19 @@ export function AppSidebar() {
 
   return (
     <>
-      <Sidebar className="dark bg-[#0a0a0a] text-white">
+      <Sidebar className="dark bg-ink text-white">
         <SidebarHeader>
-          <div className="px-2 py-3 space-y-2">
-            <div className="flex gap-4 items-center">
-              <div className="flex size-11 items-center justify-center rounded-lg bg-yellow-400 text-black">
+          <div className="space-y-2 px-2 py-5">
+            <div className="flex items-center gap-3">
+              <div className="flex size-10 items-center justify-center rounded-sm bg-brass text-ink">
                 <Scissors size={23} />
               </div>
-              <h2 className="text-lg font-extrabold tracking-wider">KLIP</h2>
+              <h2 className="font-heading text-xl font-semibold tracking-[0.12em] text-bone">
+                KLIP
+              </h2>
             </div>
-            <p className="text-xs tracking-[0.3em] text-yellow-400">
-              BARBERSHOP
+            <p className="pl-1 text-[10px] tracking-[0.28em] text-neutral-500">
+              ESTUDIO DE BARBERÍA
             </p>
           </div>
         </SidebarHeader>
@@ -157,8 +159,8 @@ export function AppSidebar() {
                 hover:translate-x-1
                 ${
                   isActive
-                    ? "bg-[#27241a] text-yellow-400 shadow-sm ring-1 ring-yellow-400/20 hover:bg-[#27241a] hover:text-yellow-300"
-                    : "text-muted-foreground hover:bg-[#27241a]/70 hover:text-yellow-300"
+                    ? "bg-pine-soft text-brass ring-1 ring-brass/20 hover:bg-pine-soft hover:text-brass-light"
+                    : "text-muted-foreground hover:bg-pine-soft/70 hover:text-brass-light"
                 }
               `}
                         >
@@ -187,7 +189,7 @@ export function AppSidebar() {
         <SidebarFooter>
           <Button
             size="lg"
-            className="bg-yellow-500 text-black hover:bg-yellow-400"
+            className="bg-brass text-ink hover:bg-brass-light"
             onClick={handleLogin}
           >
             {isAuthenticated ? (user?.name ?? "Mi cuenta") : "Iniciar sesión"}

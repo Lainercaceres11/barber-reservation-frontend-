@@ -78,11 +78,13 @@ export default function AppointmentDateForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-2xl border border-neutral-800 bg-[#111111] p-6"
+      className="space-y-6 border-y border-white/10 bg-pine p-5 sm:p-7"
     >
       <div>
-        <h2 className="text-xl font-bold">Fecha y hora</h2>
-        <p className="mt-2 text-sm text-neutral-400">
+        <h2 className="font-heading text-xl font-medium tracking-tight text-bone">
+          Fecha y hora
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-neutral-400">
           Selecciona cuándo quieres venir a la barbería.
         </p>
       </div>
@@ -115,7 +117,7 @@ export default function AppointmentDateForm({
           value={customerNotes}
           onChange={(event) => onChange({ customerNotes: event.target.value })}
           placeholder="¿Alguna indicación para el barbero?"
-          className="w-full rounded-lg border border-neutral-700 bg-black p-3 text-white placeholder:text-neutral-500"
+          className="w-full border border-white/15 bg-ink p-3 text-bone placeholder:text-neutral-500 focus-visible:border-brass"
         />
       </div>
 
@@ -133,12 +135,12 @@ export default function AppointmentDateForm({
         </p>
       )}
 
-      <div className="flex justify-between border-t border-neutral-800 pt-6">
+      <div className="flex justify-between border-t border-white/10 pt-5">
         <button
           type="button"
           onClick={onBack}
           disabled={createAppointment.isPending}
-          className="text-neutral-300 hover:text-white disabled:opacity-40"
+          className="min-h-11 px-2 text-sm font-medium text-neutral-400 transition-colors hover:text-bone disabled:opacity-40"
         >
           Volver
         </button>
@@ -146,7 +148,7 @@ export default function AppointmentDateForm({
         <button
           type="submit"
           disabled={createAppointment.isPending || createAppointment.isSuccess}
-          className="rounded-lg bg-yellow-500 px-6 py-2 font-semibold text-black hover:bg-yellow-400 disabled:opacity-40"
+          className="min-h-11 rounded-sm bg-brass px-5 py-2 text-sm font-semibold text-ink transition-colors hover:bg-brass-light disabled:opacity-40"
         >
           {createAppointment.isPending ? "Solicitando..." : "Confirmar cita"}
         </button>

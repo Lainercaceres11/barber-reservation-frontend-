@@ -167,7 +167,7 @@ export function DatePickerTime({
                 id={dateId}
                 aria-labelledby={`${dateLabelId} ${dateValueId}`}
                 variant="outline"
-                className="h-12 w-full justify-between rounded-xl border-neutral-800 bg-[#191919] px-4 font-normal text-white hover:bg-neutral-800 hover:text-white"
+                className="h-12 w-full justify-between rounded-sm border-white/15 bg-pine-light px-4 font-normal text-bone hover:bg-pine-soft hover:text-bone"
               >
                 <span id={dateValueId} className="truncate">
                   {selectedDate
@@ -181,7 +181,7 @@ export function DatePickerTime({
 
           <PopoverContent
             align="start"
-            className="w-auto rounded-xl border-neutral-800 bg-[#191919] p-0 text-white"
+            className="w-auto rounded-sm border-white/10 bg-pine p-0 text-bone"
           >
             <Calendar
               mode="single"
@@ -197,7 +197,7 @@ export function DatePickerTime({
                   setOpen(false);
                 }
               }}
-              className="bg-[#191919] text-white"
+              className="bg-pine text-bone"
             />
           </PopoverContent>
         </Popover>
@@ -232,7 +232,7 @@ export function DatePickerTime({
           value={time}
           onChange={(event) => updateTime(event.target.value)}
           disabled={!dateString || isLoading || !availableTimes.length}
-          className="h-12 w-full rounded-xl border border-neutral-800 bg-[#191919] px-4 text-white disabled:opacity-50"
+          className="h-12 w-full rounded-sm border border-white/15 bg-pine-light px-4 text-bone disabled:opacity-50"
         >
           <option value="">
             {!dateString

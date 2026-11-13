@@ -1,19 +1,19 @@
 export function SelectorSkeleton() {
   return (
     <section
-      className="mx-auto min-h-screen animate-pulse bg-black p-4"
+      className="mx-auto animate-pulse bg-ink p-4"
       aria-label="Cargando servicios"
       aria-busy="true"
     >
-      <div className="flex items-center justify-center bg-[#0a0a0a] font-sans">
-        <div className="w-full max-w-3xl rounded-2xl border border-neutral-800 bg-[#111111] p-6 shadow-2xl shadow-black/50 sm:p-8">
+      <div className="flex items-center justify-center bg-ink font-sans">
+        <div className="w-full max-w-3xl border-y border-white/10 bg-pine p-6 sm:p-8">
           <div className="mb-6 h-6 w-56 rounded bg-neutral-800" />
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}
-                className="flex w-full overflow-hidden rounded-xl border border-neutral-800 bg-[#161616]"
+                className="flex w-full overflow-hidden border border-white/10 bg-pine-soft"
               >
                 <div className="h-25 w-25 shrink-0 bg-neutral-800" />
 

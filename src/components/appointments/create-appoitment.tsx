@@ -37,27 +37,32 @@ export const CreateAppoitment = () => {
   const goBack = () => setStep((current) => current - 1);
 
   return (
-    <section className="min-h-screen bg-black px-4 py-10 text-white">
+    <section className="min-h-screen bg-ink px-5 py-10 text-bone sm:px-8 sm:py-14">
       <div className="mx-auto max-w-3xl">
         <header className="mb-8">
-          <h1 className="text-3xl font-bold">RESERVAR CITA</h1>
+          <p className="mb-3 text-xs font-medium tracking-[0.18em] text-brass">
+            Reserva en tres pasos
+          </p>
+          <h1 className="font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+            Reserva tu cita
+          </h1>
 
-          <p className="mt-2 text-sm text-neutral-400">
+          <p className="mt-3 max-w-xl text-sm leading-6 text-neutral-400">
             Sigue los pasos a continuación para reservar tu turno
           </p>
         </header>
 
-        <ol className="mb-8 grid grid-cols-3 gap-3">
+        <ol className="mb-8 grid grid-cols-3 gap-3 border-y border-white/10 py-4">
           {steps.map((label, index) => (
             <li
               key={label}
               aria-current={step === index ? "step" : undefined}
-              className={`border-b-2 pb-3 text-sm ${
+              className={`border-b-2 pb-3 text-xs sm:text-sm ${
                 step === index
-                  ? "border-yellow-400 text-yellow-400"
+                  ? "border-brass text-brass"
                   : step > index
-                    ? "border-yellow-400/50 text-white"
-                    : "border-neutral-700 text-neutral-500"
+                    ? "border-brass/50 text-neutral-200"
+                    : "border-white/10 text-neutral-500"
               }`}
             >
               <span className="mr-2">{index + 1}.</span>

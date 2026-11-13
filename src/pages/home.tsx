@@ -9,46 +9,46 @@ export default function Home() {
   return (
     <>
       <header
-        className="relative w-full flex min-h-150 items-center overflow-hidden rounded-xl bg-cover bg-center px-8 py-16 sm:px-12 lg:px-20"
+        className="relative flex min-h-136 w-full items-center overflow-hidden border-b border-brass/20 bg-cover bg-position-[center_45%] px-6 py-20 sm:min-h-152 sm:px-10 lg:min-h-168 lg:px-16"
         style={{
           backgroundImage: `url(${background})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/65" />
+        <div className="absolute inset-0 bg-ink/55" />
 
-        <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-ink/95 via-ink/75 to-ink/10" />
 
-        <div className="relative z-10 max-w-2xl space-y-6">
-          <span className="inline-block text-sm font-semibold uppercase tracking-[0.25em] text-yellow-400">
-            ---- Cuidado personal de primera calidad
-          </span>
-
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Luce impecable
-            <br />
-            <span className="text-yellow-400">Siéntete impecable.</span>
-          </h1>
-
-          <p className="max-w-lg text-base leading-7 text-gray-200 sm:text-lg">
-            Cortes de precisión, modelado de la barba y afeitados tradicionales
-            con toalla caliente. Reserva cita con un maestro barbero en menos de
-            un minuto.
+        <div className="relative z-10 max-w-4xl space-y-7">
+          <p className="flex items-center gap-3 text-xs font-medium tracking-[0.18em] text-brass-light sm:text-sm">
+            <span aria-hidden="true" className="h-px w-8 bg-brass" />
+            Cuidado personal de primera calidad
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <h1 className="font-heading text-5xl font-medium leading-[0.98] tracking-[-0.045em] text-bone sm:text-6xl lg:text-8xl">
+            Luce impecable.
+            <span className="mt-2 block text-brass">Siéntete impecable.</span>
+          </h1>
+
+          <p className="max-w-xl text-base leading-7 text-neutral-200 sm:text-lg sm:leading-8">
+            Cortes de precisión, modelado de la barba y afeitados tradicionales
+            con toalla caliente. Reserva con un maestro barbero en menos de un
+            minuto.
+          </p>
+
+          <div className="flex flex-col items-stretch gap-4 pt-2 sm:flex-row sm:items-center">
             <Link
               to="/books"
-              className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-yellow-500 text-black font-bold text-sm sm:text-base hover:bg-[#c2a05e] transition-all duration-300 shadow-[0_0_20px_rgba(212,176,106,0.15)] hover:shadow-[0_0_25px_rgba(212,176,106,0.3)]"
+              className="inline-flex min-h-12 items-center justify-center gap-3 rounded-sm bg-brass px-7 py-3 text-sm font-semibold text-ink transition-colors hover:bg-brass-light sm:text-base"
             >
-              <span>Agendar cita</span>
-              <ArrowRightIcon size={18} strokeWidth={2.5} />
+              Agendar una cita
+              <ArrowRightIcon size={17} strokeWidth={2} aria-hidden="true" />
             </Link>
 
             <Link
               to="/services"
-              className="flex items-center justify-center gap-2 w-full sm:w-auto px-8 py-3.5 rounded-xl bg-transparent border-2 border-[#d4b06a] text-[#d4b06a] font-semibold text-sm sm:text-base hover:bg-[#d4b06a]/10 transition-all duration-300"
+              className="inline-flex min-h-12 items-center justify-center border-b border-brass/60 px-2 py-3 text-sm font-medium text-bone transition-colors hover:border-brass hover:text-brass-light sm:text-base"
             >
-              <span>Ver servicios</span>
+              Explorar servicios
             </Link>
           </div>
         </div>

@@ -17,12 +17,15 @@ export default function Services({ isHome }: ServicesProps) {
 
   if (isLoading) {
     return (
-      <section className="bg-black min-h-screen p-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <section
+        aria-busy="true"
+        className="min-h-screen bg-ink px-5 py-12 sm:px-8"
+      >
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <div
               key={i}
-              className="h-96 rounded-2xl bg-[#111111] border border-neutral-800 animate-pulse"
+              className="aspect-4/5 animate-pulse border border-white/5 bg-pine"
             />
           ))}
         </div>
@@ -33,81 +36,81 @@ export default function Services({ isHome }: ServicesProps) {
   if (isError) {
     console.error("Error al obtener servicios:", error?.cause);
     return (
-      <section className="bg-black min-h-screen grid place-content-center p-4">
-        <p className="text-red-500">No se pudieron cargar los servicios.</p>
+      <section className="grid min-h-screen place-content-center bg-ink p-6">
+        <p role="alert" className="text-red-300">
+          No se pudieron cargar los servicios.
+        </p>
       </section>
     );
   }
 
   return (
-    <section className="space-y-4 mx-auto p-4 bg-black">
+    <section className="space-y-10 bg-ink px-5 py-10 text-bone sm:px-8 sm:py-14">
       {isHome && (
         <Title
-          className="max-w-6xl mx-auto"
+          className="mx-auto max-w-6xl"
           subtitle={{ number: "01", content: "Servicios" }}
           title="¿Qué hacemos?"
         />
       )}
-      <div className="mx-auto max-w-6xl py-10 text-center md:py-16">
-        <p className="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-yellow-500">
+      <div className="mx-auto max-w-6xl py-4">
+        <p className="mb-5 text-xs font-medium tracking-[0.18em] text-brass">
           La experiencia KLIP
         </p>
 
-        <Heading className="mx-auto max-w-4xl text-4xl font-black uppercase leading-[1.05] tracking-tight text-white sm:text-5xl md:text-7xl">
+        <Heading className="max-w-4xl font-heading text-4xl font-medium leading-[1.05] tracking-tight text-bone sm:text-5xl lg:text-6xl">
           Más que un simple corte de pelo
-          <span className="mt-2 block text-yellow-400">Es tu estilo</span>
+          <span className="mt-2 block text-brass">Es tu estilo</span>
         </Heading>
 
-        <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-neutral-400 sm:text-base">
+        <p className="mt-6 max-w-xl text-sm leading-7 text-neutral-400 sm:text-base">
           Cortes de precisión. Cuidado personal experto. Un look que habla por
           sí solo.
         </p>
 
-        <div className="mx-auto mt-10 flex max-w-6xl items-center gap-4">
-          <span className="h-px flex-1 bg-neutral-800" />
-
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-300">
+        <div className="mt-9 flex max-w-6xl items-center gap-3">
+          <span aria-hidden="true" className="h-px w-8 bg-brass/60" />
+          <span className="text-xs font-medium tracking-[0.12em] text-neutral-300">
             Nuestros servicios
           </span>
-
-          <span className="h-px flex-1 bg-neutral-800" />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {services?.map((service) => (
           <article
             key={service.id}
-            className="group flex flex-col bg-[#111111] rounded-2xl overflow-hidden border border-neutral-800 hover:border-neutral-600 transition-all duration-300 hover:shadow-xl hover:shadow-black/50 "
+            className="group flex flex-col overflow-hidden border border-white/10 bg-pine transition-colors duration-300 hover:border-brass/50"
           >
-            <div className="relative h-56 w-full overflow-hidden">
+            <div className="relative aspect-4/3 w-full overflow-hidden bg-pine-light">
               <img
                 src={service.image_url || FALLBACK_IMAGE}
                 alt=""
                 loading="lazy"
-                className="h-full w-full object-cover bg-neutral-900 transition-transform duration-500 ease-out group-hover:scale-105"
+                className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
               />
-              <div className="absolute top-4 right-4 font-bold bg-slate-800 rounded-full p-2 text-sm text-yellow-400 drop-shadow-lg">
+              <div className="absolute right-0 top-0 bg-ink/90 px-4 py-3 text-sm font-semibold text-brass">
                 {currencyFormatter(service.price)}
               </div>
             </div>
 
-            <div className="flex flex-col grow p-6">
-              <h3 className="text-lg font-bold text-white uppercase tracking-wider mb-3">
+            <div className="flex grow flex-col p-5 sm:p-6">
+              <h3 className="mb-3 font-heading text-lg font-medium tracking-tight text-bone">
                 {service.name}
               </h3>
 
-              <p className="text-neutral-400 text-sm mb-6 grow leading-relaxed">
+              <p className="mb-6 grow text-sm leading-6 text-neutral-400">
                 {service.description}
               </p>
 
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-neutral-800">
-                <div className="flex items-center text-neutral-400 text-sm">
+              <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-4">
+                <div className="flex items-center text-sm text-neutral-300">
                   <svg
-                    className="w-4 h-4 mr-2"
+                    className="mr-2 size-4 text-brass"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
@@ -121,11 +124,11 @@ export default function Services({ isHome }: ServicesProps) {
 
                 <Link
                   to="/books"
-                  className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black text-sm font-bold py-2.5 px-5 rounded-lg transition-colors duration-200"
+                  className="inline-flex min-h-10 items-center gap-2 px-1 text-sm font-medium text-brass transition-colors hover:text-brass-light"
                 >
                   Agendar
                   <svg
-                    className="w-4 h-4"
+                    className="size-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

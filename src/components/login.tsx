@@ -80,13 +80,13 @@ export default function LoginForm({
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
-      <DialogContent className="w-[calc(100%-2rem)] max-w-xl! gap-0 rounded-xl border border-neutral-800 bg-[#111111] p-8 text-white shadow-2xl shadow-black/50 [&>button:last-child]:text-neutral-400 [&>button:last-child]:hover:text-white">
-        <DialogHeader className="mb-8 space-y-2 text-left">
-          <DialogTitle className="text-3xl font-black uppercase tracking-wider text-white">
-            DE VUELTA EN KLIP
+      <DialogContent className="w-[calc(100%-2rem)] max-w-lg! gap-0 rounded-sm border border-white/10 bg-pine p-6 text-bone shadow-2xl shadow-black/40 sm:p-8 [&>button:last-child]:text-neutral-400 [&>button:last-child]:hover:text-bone">
+        <DialogHeader className="mb-7 space-y-2 text-left">
+          <DialogTitle className="font-heading text-2xl font-medium tracking-tight text-bone sm:text-3xl">
+            De vuelta en Klip
           </DialogTitle>
 
-          <DialogDescription className="text-sm text-neutral-400">
+          <DialogDescription className="text-sm leading-6 text-neutral-400">
             Un buen estilo nunca pasa de moda.
           </DialogDescription>
         </DialogHeader>
@@ -105,7 +105,7 @@ export default function LoginForm({
               placeholder="tu@correo.com"
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "login-email-error" : undefined}
-              className="w-full rounded-lg border border-neutral-800 bg-[#0a0a0a] px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all duration-200 focus:border-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400"
+              className="w-full rounded-sm border border-white/10 bg-ink px-4 py-3.5 text-sm text-bone placeholder:text-neutral-500 transition-colors focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass"
             />
 
             {errors.email && (
@@ -134,7 +134,7 @@ export default function LoginForm({
               aria-describedby={
                 errors.password ? "login-password-error" : undefined
               }
-              className="w-full rounded-lg border border-neutral-800 bg-[#0a0a0a] px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all duration-200 focus:border-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400"
+              className="w-full rounded-sm border border-white/10 bg-ink px-4 py-3.5 text-sm text-bone placeholder:text-neutral-500 transition-colors focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass"
             />
 
             {errors.password && (
@@ -157,10 +157,10 @@ export default function LoginForm({
           <button
             type="submit"
             disabled={isLoggingIn}
-            className="mt-6 flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#d4b06a] px-4 py-3.5 font-bold text-black transition-colors duration-200 hover:bg-[#c2a05e] disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-6 flex min-h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-sm bg-brass px-4 py-3 font-semibold text-ink transition-colors hover:bg-brass-light disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isLoggingIn ? "Iniciando sesión..." : "Iniciar sesión"}
-            <ArrowRight size={18} strokeWidth={2.5} />
+            <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
           </button>
         </form>
 
@@ -172,7 +172,7 @@ export default function LoginForm({
           <button
             type="button"
             onClick={handleRegisterClick}
-            className="font-bold text-[#d4b06a] transition-colors duration-200 hover:text-[#c2a05e]"
+            className="font-medium text-brass transition-colors hover:text-brass-light"
           >
             Crea tu cuenta
           </button>

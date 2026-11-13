@@ -29,39 +29,44 @@ const features = [
 
 export default function FeatureBar() {
   return (
-    <article className="bg-[#0a0a0a] py-8 border-y border-neutral-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
+    <section
+      aria-label="Ventajas de reservar en Klip"
+      className="border-b border-white/10 bg-pine"
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
+        <ul className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-white/10">
           {features.map((feature, index) => {
             const { Icon } = feature;
 
             return (
-              <div
+              <li
                 key={feature.id}
-                className={`flex items-center gap-4 
-                  ${index !== features.length - 1 ? "lg:border-r lg:border-neutral-800" : ""} 
-                  ${index !== 0 ? "lg:pl-8" : ""} 
-                  ${index !== features.length - 1 ? "lg:pr-8" : ""}
-                  sm:justify-center lg:justify-start
-                `}
+                className={`flex items-center gap-4 py-5 sm:px-5 lg:py-7 ${
+                  index % 2 === 0 ? "sm:pl-0" : ""
+                } ${index === 0 ? "lg:pl-0" : ""} ${
+                  index === features.length - 1 ? "lg:pr-0" : ""
+                }`}
               >
-                <div className="shrink-0 text-yellow-400">
-                  <Icon size={28} strokeWidth={1.5} />
-                </div>
+                <Icon
+                  aria-hidden="true"
+                  size={22}
+                  strokeWidth={1.5}
+                  className="shrink-0 text-brass"
+                />
 
                 <div className="flex flex-col">
-                  <h3 className="text-white font-bold text-sm tracking-wide mb-1">
+                  <h3 className="mb-1 text-sm font-medium tracking-wide text-bone">
                     {feature.title}
                   </h3>
-                  <p className="text-neutral-500 text-xs">
+                  <p className="text-xs leading-5 text-neutral-400">
                     {feature.description}
                   </p>
                 </div>
-              </div>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
-    </article>
+    </section>
   );
 }

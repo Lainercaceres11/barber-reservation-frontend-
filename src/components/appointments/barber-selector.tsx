@@ -31,11 +31,11 @@ export default function ServicesSelector({
   }
 
   return (
-    <section className="mx-auto bg-black p-4">
-      <div className="bg-[#0a0a0a] flex items-center justify-center font-sans">
-        <div className="bg-[#111111] border border-neutral-800 rounded-2xl p-6 sm:p-8 w-full max-w-3xl shadow-2xl shadow-black/50">
-          <h2 className="text-xl font-bold text-white uppercase tracking-wider mb-6">
-            ELIGE UN BARBERO
+    <section className="mx-auto">
+      <div className="w-full">
+        <div className="w-full max-w-3xl border-y border-white/10 bg-pine p-5 sm:p-7">
+          <h2 className="mb-6 font-heading text-xl font-medium tracking-tight text-bone">
+            Elige un barbero
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -47,11 +47,11 @@ export default function ServicesSelector({
                 onClick={() => onSelect(Number(barber.id))}
                 className={`group flex w-full items-center gap-4 rounded-xl border p-4 text-left transition-colors ${
                   selectedBarberId === Number(barber.id)
-                    ? "border-yellow-400 bg-yellow-400/10"
-                    : "border-neutral-800 bg-[#161616] hover:border-neutral-600"
+                    ? "border-brass bg-brass/10"
+                    : "border-white/10 bg-pine-soft hover:border-brass/50"
                 }`}
               >
-                <div className="group flex w-full bg-[#161616] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+                <div className="group flex w-full overflow-hidden">
                   <div className="w-25 h-25 shrink-0 overflow-hidden relative">
                     <img
                       src={
@@ -64,11 +64,11 @@ export default function ServicesSelector({
                   </div>
 
                   <div className="flex flex-col justify-center p-3 w-full gap-2">
-                    <h3 className="text-white font-bold text-sm tracking-wide leading-tight">
+                    <h3 className="font-heading text-sm font-medium leading-tight text-bone">
                       {barber.name}
                     </h3>
 
-                    <p className="flex items-center text-neutral-500 text-[11px] font-medium">
+                    <p className="flex items-center text-xs font-medium text-neutral-400">
                       <Phone className="mr-1" />
                       {barber.phone}
                     </p>
@@ -78,11 +78,11 @@ export default function ServicesSelector({
             ))}
           </div>
 
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-neutral-800">
+          <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
             <button
               type="button"
               onClick={onBack}
-              className="text-neutral-300 hover:text-white font-medium text-sm transition-colors"
+              className="text-sm font-medium text-neutral-400 transition-colors hover:text-bone"
             >
               Volver
             </button>
@@ -91,7 +91,7 @@ export default function ServicesSelector({
               type="button"
               disabled={selectedBarberId === null}
               onClick={onNext}
-              className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-lg transition-colors duration-200 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex min-h-11 items-center gap-2 rounded-sm bg-brass px-5 py-2 text-sm font-semibold text-ink transition-colors hover:bg-brass-light disabled:cursor-not-allowed disabled:opacity-50"
             >
               Siguiente
               <ChevronRight size={16} strokeWidth={2.5} />

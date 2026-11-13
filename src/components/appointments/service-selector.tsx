@@ -35,11 +35,11 @@ export default function ServicesSelector({
   }
 
   return (
-    <section className="mx-auto bg-black p-4">
-      <div className="bg-[#0a0a0a] flex items-center justify-center font-sans">
-        <div className="bg-[#111111] border border-neutral-800 rounded-2xl p-6 sm:p-8 w-full max-w-3xl shadow-2xl shadow-black/50">
-          <h2 className="text-xl font-bold text-white uppercase tracking-wider mb-6">
-            ELIGE UN SERVICIO
+    <section className="mx-auto">
+      <div className="w-full">
+        <div className="w-full max-w-3xl border-y border-white/10 bg-pine p-5 sm:p-7">
+          <h2 className="mb-6 font-heading text-xl font-medium tracking-tight text-bone">
+            Elige un servicio
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -56,12 +56,12 @@ export default function ServicesSelector({
                 }
                 className={`group flex w-full overflow-hidden rounded-xl border text-left transition-all ${
                   selectedServiceId === Number(service.id)
-                    ? "border-yellow-400 bg-yellow-400/10"
-                    : "border-neutral-800 bg-[#161616] hover:border-neutral-600"
+                    ? "border-brass bg-brass/10"
+                    : "border-white/10 bg-pine-soft hover:border-brass/50"
                 }`}
               >
                 <div
-                  className="group flex bg-[#161616] rounded-xl overflow-hidden w-full transition-all duration-300 cursor-pointer"
+                  className="group flex w-full overflow-hidden"
                 >
                   <div className="w-25 h-25 shrink-0 overflow-hidden relative">
                     <img
@@ -77,11 +77,11 @@ export default function ServicesSelector({
                   <div className="flex flex-col justify-center p-3 w-full">
                     {/* Fila superior: Título y Precio */}
                     <div className="flex justify-between items-start gap-2">
-                      <h3 className="text-white font-bold text-sm tracking-wide leading-tight">
+                      <h3 className="font-heading text-sm font-medium leading-tight text-bone">
                         {service.name}
                       </h3>
 
-                      <span className="text-[#d4b06a] font-bold text-sm shrink-0 whitespace-nowrap">
+                      <span className="shrink-0 whitespace-nowrap text-sm font-medium text-brass">
                         {Number(service.price).toLocaleString("es-CO", {
                           style: "currency",
                           currency: "COP",
@@ -90,11 +90,11 @@ export default function ServicesSelector({
                       </span>
                     </div>
 
-                    <p className="text-neutral-400 text-xs mt-1 mb-2 truncate">
+                    <p className="mb-2 mt-1 truncate text-xs text-neutral-400">
                       {service.description}
                     </p>
 
-                    <div className="flex items-center text-neutral-500 text-[11px] font-medium">
+                    <div className="flex items-center text-xs font-medium text-neutral-400">
                       <Clock size={12} className="mr-1" />
                       {service.duration_minutes} min
                     </div>
@@ -104,10 +104,10 @@ export default function ServicesSelector({
             ))}
           </div>
 
-          <div className="flex items-center justify-between mt-8 pt-6 border-t border-neutral-800">
+          <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
             <Link
               to="/"
-              className="text-neutral-300 hover:text-white font-medium text-sm transition-colors"
+              className="text-sm font-medium text-neutral-400 transition-colors hover:text-bone"
             >
               Cancelar
             </Link>
@@ -116,7 +116,7 @@ export default function ServicesSelector({
               type="button"
               disabled={selectedServiceId === null}
               onClick={onNext}
-              className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-lg transition-colors duration-200 text-sm"
+              className="inline-flex min-h-11 items-center gap-2 rounded-sm bg-brass px-5 py-2 text-sm font-semibold text-ink transition-colors hover:bg-brass-light disabled:cursor-not-allowed disabled:opacity-50"
             >
               Siguiente
               <ChevronRight size={16} strokeWidth={2.5} />

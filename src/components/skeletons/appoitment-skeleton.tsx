@@ -3,7 +3,7 @@ export function AppointmentsSkeleton() {
     <section
       aria-label="Cargando citas"
       aria-busy="true"
-      className="min-h-screen bg-[#0a0a0a] px-4 py-12 font-sans text-white sm:px-6 lg:px-8"
+      className="min-h-screen bg-ink px-5 py-12 font-sans text-bone sm:px-8"
     >
       <div className="mx-auto max-w-4xl">
         {/* Encabezado */}
@@ -13,7 +13,7 @@ export function AppointmentsSkeleton() {
             <div className="h-4 w-64 max-w-full animate-pulse rounded bg-neutral-800/70" />
           </div>
 
-          <div className="h-11 w-full animate-pulse rounded-lg bg-[#d4b06a]/20 sm:w-36" />
+          <div className="h-11 w-full animate-pulse rounded-sm bg-brass/20 sm:w-36" />
         </div>
 
         {/* Pestañas */}
@@ -32,7 +32,7 @@ export function AppointmentsSkeleton() {
           {[1, 2, 3].map((item) => (
             <article
               key={item}
-              className="flex animate-pulse flex-col overflow-hidden rounded-2xl border border-neutral-800 bg-[#111111] sm:flex-row"
+              className="flex animate-pulse flex-col overflow-hidden border-y border-white/10 bg-pine sm:flex-row"
             >
               {/* Fecha y hora */}
               <div className="flex items-center gap-4 border-b border-neutral-800 p-5 sm:w-32 sm:shrink-0 sm:flex-col sm:items-start sm:justify-center sm:gap-2 sm:border-b-0 sm:border-r">
@@ -44,7 +44,7 @@ export function AppointmentsSkeleton() {
               <div className="flex grow flex-col justify-center gap-3 p-5">
                 <div className="h-5 w-40 max-w-full rounded bg-neutral-800" />
                 <div className="h-4 w-36 max-w-full rounded bg-neutral-800/70" />
-                <div className="h-5 w-24 rounded bg-[#d4b06a]/20" />
+                <div className="h-5 w-24 rounded-sm bg-brass/20" />
               </div>
 
               <div className="flex flex-col justify-between gap-5 p-5 sm:w-48 sm:shrink-0 sm:items-end">

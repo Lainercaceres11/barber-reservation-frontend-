@@ -11,7 +11,7 @@ export default function Layout() {
     <SidebarProvider>
       <a
         href="#main-content"
-        className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:not-sr-only"
+        className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-black focus:not-sr-only"
       >
         Saltar al contenido principal
       </a>
@@ -19,12 +19,12 @@ export default function Layout() {
       <SidebarInset
         id="main-content"
         tabIndex={-1}
-        className="dark min-h-screen bg-background text-white"
+        className="dark min-h-screen bg-ink text-white"
       >
-        <header className="flex h-14 shrink-0 items-center gap-3 border-b border-white/10 bg-[#111110] px-4">
-          <SidebarTrigger className="text-yellow-400 hover:bg-[#27241a] hover:text-yellow-300" />
-          <span className="text-sm font-semibold tracking-wider text-white">
-            KLIP <span className="text-yellow-400">BARBERSHOP</span>
+        <header className="flex h-16 shrink-0 items-center gap-4 border-b border-white/10 bg-ink px-5 sm:px-8">
+          <SidebarTrigger className="text-brass hover:bg-pine-soft hover:text-brass-light" />
+          <span className="font-heading text-sm font-semibold tracking-[0.16em] text-bone">
+            KLIP <span className="text-brass">/</span> BARBERSHOP
           </span>
         </header>
         <Outlet />

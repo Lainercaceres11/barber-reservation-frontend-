@@ -86,12 +86,15 @@ export default function Appointments() {
   };
 
   return (
-    <section className="bg-[#0a0a0a] min-h-screen py-12 px-4 sm:px-6 lg:px-8 font-sans">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+    <section className="min-h-screen bg-ink px-5 py-10 text-bone sm:px-8 sm:py-14">
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-8 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
           <div>
-            <h1 className="text-3xl font-black text-white uppercase tracking-wider mb-1">
-              MIS CITAS
+            <p className="mb-3 text-xs font-medium tracking-[0.18em] text-brass">
+              Tu agenda
+            </p>
+            <h1 className="mb-2 font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+              Mis citas
             </h1>
             <p className="text-neutral-400 text-sm">
               Gestiona tus visitas futuras y pasadas
@@ -99,7 +102,7 @@ export default function Appointments() {
           </div>
           <Link
             to="/books"
-            className="flex items-center justify-center gap-2 bg-[#d4b06a] hover:bg-[#c2a05e] text-black font-bold py-2.5 px-6 rounded-lg transition-colors duration-200"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm bg-brass px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-brass-light"
           >
             <Calendar size={18} strokeWidth={2.5} />
             Nueva cita
@@ -108,7 +111,7 @@ export default function Appointments() {
         <div
           role="group"
           aria-label="Filtrar citas"
-          className="flex items-center gap-2 mb-6"
+          className="mb-6 flex items-center gap-5 border-b border-white/10"
         >
           {appointmentFilters.map((tab) => (
             <button
@@ -116,10 +119,10 @@ export default function Appointments() {
               type="button"
               aria-pressed={activeTab === tab.value}
               onClick={() => setActiveTab(tab.value)}
-              className={`px-5 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 border capitalize ${
+              className={`border-b-2 px-1 py-3 text-sm font-medium transition-colors ${
                 activeTab === tab.value
-                  ? "bg-[#1a1a1a] border-[#d4b06a] text-[#d4b06a]"
-                  : "bg-transparent border-transparent text-neutral-400 hover:text-white"
+                  ? "border-brass text-brass"
+                  : "border-transparent text-neutral-400 hover:text-bone"
               }`}
             >
               {tab.label}
@@ -137,7 +140,7 @@ export default function Appointments() {
         {filteredAppointments.length === 0 ? (
           <div
             role="status"
-            className="text-center py-12 bg-[#111111] border border-neutral-800 rounded-2xl"
+            className="border-y border-white/10 bg-pine px-5 py-12 text-center"
           >
             <p className="text-neutral-400">
               {appointmentsList.length === 0
@@ -148,7 +151,7 @@ export default function Appointments() {
             </p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {filteredAppointments.map((appointment) => {
               const dateObj = new Date(appointment.starts_at);
               const day = dateObj.getDate().toString().padStart(2, "0");
@@ -173,57 +176,57 @@ export default function Appointments() {
               return (
                 <article
                   key={appointment.id}
-                  className="bg-[#111111] border border-neutral-800 rounded-2xl flex flex-col sm:flex-row overflow-hidden hover:border-neutral-700 transition-colors duration-300"
+                  className="flex flex-col border-y border-white/10 bg-pine transition-colors hover:bg-pine-light sm:flex-row"
                 >
                   {/* Columna Izquierda: Fecha y Hora */}
-                  <div className="flex flex-row sm:flex-col items-center sm:items-start justify-center sm:justify-start p-5 sm:w-32 shrink-0 border-b sm:border-b-0 sm:border-r border-neutral-800 gap-4 sm:gap-1">
+                  <div className="flex shrink-0 flex-row items-center justify-center gap-4 border-b border-white/10 p-5 sm:w-32 sm:flex-col sm:items-start sm:justify-start sm:gap-1 sm:border-b-0 sm:border-r">
                     <time
                       dateTime={appointment.starts_at}
                       aria-label={dateLabel}
-                      className="text-3xl font-bold text-[#d4b06a] leading-none"
+                      className="font-heading text-3xl font-medium leading-none text-brass"
                     >
                       {day}
                     </time>
                     <span
                       aria-hidden="true"
-                      className="text-xs font-bold text-neutral-400 tracking-wider"
+                      className="text-xs font-medium tracking-wider text-neutral-400"
                     >
                       {month}
                     </span>
-                    <div className="flex items-center text-neutral-400 text-xs sm:mt-2 ml-auto sm:ml-0">
+                    <div className="ml-auto flex items-center text-xs text-neutral-400 sm:ml-0 sm:mt-2">
                       <Clock size={12} className="mr-1" />
                       {time}
                     </div>
                   </div>
 
-                  <div className="flex flex-col justify-center p-5 grow">
-                    <h3 className="text-lg font-bold text-white mb-1">
+                  <div className="flex grow flex-col justify-center p-5">
+                    <h3 className="mb-1 font-heading text-lg font-medium text-bone">
                       {appointment.service.name}
                     </h3>
 
-                    <div className="flex items-center text-neutral-400 text-sm mb-3">
+                    <div className="mb-3 flex items-center text-sm text-neutral-400">
                       <Scissors size={14} className="mr-2 text-neutral-500" />
                       con {appointment.barber.name}
                     </div>
 
-                    <div className="text-[#d4b06a] font-bold">
+                    <div className="font-medium text-brass">
                       {formatPrice(appointment.service_price)}
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-start sm:items-end justify-between p-5 sm:w-48 shrink-0">
+                  <div className="flex shrink-0 flex-col items-start justify-between gap-4 p-5 sm:w-48 sm:items-end">
                     {appointment.status.toLowerCase() === "pending" ? (
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-yellow-700/50 bg-yellow-900/20 text-yellow-500 mb-4 sm:mb-0">
+                      <div className="flex items-center gap-2 text-xs font-medium text-brass">
                         <AlertCircle size={12} />
                         Pendiente
                       </div>
                     ) : appointment.status.toLowerCase() === "confirmed" ? (
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-green-700/50 bg-green-900/20 text-green-500 mb-4 sm:mb-0">
+                      <div className="flex items-center gap-2 text-xs font-medium text-green-400">
                         <CheckCircle2 size={12} />
                         Confirmada
                       </div>
                     ) : (
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border border-neutral-700 bg-neutral-800/50 text-neutral-400 mb-4 sm:mb-0">
+                      <div className="flex items-center gap-2 text-xs font-medium text-neutral-400">
                         {appointmentStatusLabels[appointment.status.toLowerCase()] ??
                           appointment.status}
                       </div>
@@ -235,7 +238,7 @@ export default function Appointments() {
                         disabled={cancelMutation.isPending}
                         onClick={() => handleCancelMutation(appointment.id)}
                         aria-label={`Cancelar cita de ${appointment.service.name} con ${appointment.barber.name}`}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-red-900/50 text-red-500 hover:bg-red-900/20 transition-colors duration-200 w-full sm:w-auto justify-center disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex min-h-10 w-full items-center justify-center gap-2 border border-red-900/50 px-4 py-2 text-sm font-medium text-red-300 transition-colors hover:bg-red-950/30 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                       >
                         <X size={16} aria-hidden="true" />
                         Cancelar cita
