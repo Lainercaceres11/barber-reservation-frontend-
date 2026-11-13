@@ -104,11 +104,16 @@ export default function LoginForm({
               {...register("email")}
               placeholder="tu@correo.com"
               aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "login-email-error" : undefined}
               className="w-full rounded-lg border border-neutral-800 bg-[#0a0a0a] px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all duration-200 focus:border-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400"
             />
 
             {errors.email && (
-              <p className="text-sm text-red-500" role="alert">
+              <p
+                id="login-email-error"
+                className="text-sm text-red-500"
+                role="alert"
+              >
                 {errors.email.message}
               </p>
             )}
@@ -126,11 +131,18 @@ export default function LoginForm({
               {...register("password")}
               placeholder="Tu contraseña"
               aria-invalid={!!errors.password}
+              aria-describedby={
+                errors.password ? "login-password-error" : undefined
+              }
               className="w-full rounded-lg border border-neutral-800 bg-[#0a0a0a] px-4 py-3.5 text-sm text-white placeholder-neutral-500 transition-all duration-200 focus:border-yellow-400 focus:outline-none focus:ring-1 focus:ring-yellow-400"
             />
 
             {errors.password && (
-              <p className="text-sm text-red-500" role="alert">
+              <p
+                id="login-password-error"
+                className="text-sm text-red-500"
+                role="alert"
+              >
                 {errors.password.message}
               </p>
             )}

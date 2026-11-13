@@ -27,7 +27,7 @@ export default function Barbers() {
   return (
     <section className="max-w-7xl mx-auto p-4">
       <Title
-        subtitle={{ number: "02", content: "The team" }}
+        subtitle={{ number: "02", content: "El equipo" }}
         title="Conoce los barberos"
       />
 
@@ -43,7 +43,7 @@ export default function Barbers() {
                   ? barber.image_url
                   : "https://images.pexels.com/photos/1797137/pexels-photo-1797137.jpeg"
               }
-              alt={barber.name}
+              alt=""
               className="[grid-area:barber] z-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
             />
 

@@ -5,12 +5,12 @@ import {
   ChevronRight,
   Check,
   X,
-  Settings2,
 } from "lucide-react";
 
 import useAppoitments from "@/hooks/use-appoitments";
 import useConfirmAppointment from "@/hooks/mutation/appointments/use-confirm-appoitment";
 import useCompletedAppoitment from "@/hooks/mutation/appointments/use-completed-appoitment";
+import useCancelAppoitment from "@/hooks/mutation/appointments/use-cancel-appoitment";
 import { useAuth } from "@/hooks/use-auth";
 
 type AppointmentStatus = "pending" | "confirmed" | "completed" | "cancelled";
@@ -146,6 +146,7 @@ export default function BarberDashboard() {
 
   const confirmMutation = useConfirmAppointment();
   const completedMutation = useCompletedAppoitment();
+  const cancelMutation = useCancelAppoitment();
 
   const [selectedDate, setSelectedDate] = useState(() => new Date());
   const [activeTab, setActiveTab] = useState<string>("all");
@@ -251,22 +252,43 @@ export default function BarberDashboard() {
     }
   };
 
+  const handleCancelAppointment = async (appointment: Appointment) => {
+    setActionError(null);
+    setUpdatingId(appointment.id);
+
+    try {
+      await cancelMutation.mutateAsync(Number(appointment.id));
+    } catch (error) {
+      console.error("Error al cancelar la cita:", error);
+      setActionError("No fue posible cancelar la cita. Inténtalo nuevamente.");
+    } finally {
+      setUpdatingId(null);
+    }
+  };
+
   if (isLoading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#0a0a0a] text-white">
+      <section
+        aria-live="polite"
+        aria-busy="true"
+        className="flex min-h-screen items-center justify-center bg-[#0a0a0a] text-white"
+      >
         <p className="text-sm text-neutral-400">Cargando agenda...</p>
-      </main>
+      </section>
     );
   }
 
   if (error) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-3 bg-[#0a0a0a] text-white">
+      <section
+        role="alert"
+        className="flex min-h-screen flex-col items-center justify-center gap-3 bg-[#0a0a0a] text-white"
+      >
         <p className="text-red-400">Error al cargar las citas.</p>
         <p className="text-sm text-neutral-500">
           Verifica la conexión con el backend e inténtalo nuevamente.
         </p>
-      </main>
+      </section>
     );
   }
 
@@ -289,16 +311,6 @@ export default function BarberDashboard() {
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={() => {
-              // Aquí puedes abrir la pantalla de disponibilidad.
-            }}
-            className="flex w-fit items-center gap-2 rounded-lg border border-neutral-800 px-4 py-2 text-sm transition-colors hover:bg-neutral-900"
-          >
-            <Settings2 size={16} />
-            Disponibilidad
-          </button>
         </header>
 
         <hr className="mb-8 border-neutral-800" />
@@ -376,21 +388,19 @@ export default function BarberDashboard() {
               <ChevronRight size={20} />
             </button>
 
-            <button
-              type="button"
-              onClick={() => setSelectedDate(new Date("2026-10-30T12:00:00"))}
-              className="rounded-lg border border-neutral-800 px-3 py-1.5 text-xs text-neutral-300 transition-colors hover:bg-neutral-900"
-            >
-              30 oct.
-            </button>
           </div>
         </div>
 
-        <div className="mb-2 flex gap-2 overflow-x-auto border-b border-neutral-800 pb-4">
+        <div
+          role="group"
+          aria-label="Filtrar citas por estado"
+          className="mb-2 flex gap-2 overflow-x-auto border-b border-neutral-800 pb-4"
+        >
           {tabs.map((tab) => (
             <button
               key={tab.value}
               type="button"
+              aria-pressed={activeTab === tab.value}
               onClick={() => setActiveTab(tab.value)}
               className={`whitespace-nowrap rounded-md px-4 py-1.5 text-sm font-medium transition-colors ${
                 activeTab === tab.value
@@ -402,6 +412,13 @@ export default function BarberDashboard() {
             </button>
           ))}
         </div>
+
+        <p className="sr-only" aria-live="polite" aria-atomic="true">
+          {filteredAppointments.length}{" "}
+          {filteredAppointments.length === 1
+            ? "cita en la agenda"
+            : "citas en la agenda"}
+        </p>
 
         {actionError && (
           <div
@@ -501,10 +518,8 @@ export default function BarberDashboard() {
                           <button
                             type="button"
                             disabled={isUpdating}
-                            aria-label="Cancelar cita"
-                            onClick={() => {
-                              // Conectar aquí la mutación de cancelación.
-                            }}
+                            aria-label={`Cancelar cita de ${appointment.customer?.name ?? "cliente"}`}
+                            onClick={() => handleCancelAppointment(appointment)}
                             className="rounded-md p-1.5 text-neutral-500 transition-colors hover:text-red-500 disabled:opacity-50"
                           >
                             <X size={16} />

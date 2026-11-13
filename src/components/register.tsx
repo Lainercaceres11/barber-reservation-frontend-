@@ -130,13 +130,16 @@ export default function RegisterForm({
               id="register-name"
               autoComplete="name"
               aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "register-name-error" : undefined}
               {...register("name")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="Tu nombre"
             />
 
             {errors.name && (
-              <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>
+              <p id="register-name-error" className="mt-1 text-sm text-red-400">
+                {errors.name.message}
+              </p>
             )}
           </div>
 
@@ -150,13 +153,16 @@ export default function RegisterForm({
               type="email"
               autoComplete="email"
               aria-invalid={!!errors.email}
+              aria-describedby={
+                errors.email ? "register-email-error" : undefined
+              }
               {...register("email")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="correo@ejemplo.com"
             />
 
             {errors.email && (
-              <p className="mt-1 text-sm text-red-400">
+              <p id="register-email-error" className="mt-1 text-sm text-red-400">
                 {errors.email.message}
               </p>
             )}
@@ -188,13 +194,19 @@ export default function RegisterForm({
               type="password"
               autoComplete="new-password"
               aria-invalid={!!errors.password}
+              aria-describedby={
+                errors.password ? "register-password-error" : undefined
+              }
               {...register("password")}
               className="w-full rounded-lg border border-white/10 bg-[#222] px-4 py-3 outline-none transition focus:border-[#d4b06a]"
               placeholder="Mínimo 8 caracteres"
             />
 
             {errors.password && (
-              <p className="mt-1 text-sm text-red-400">
+              <p
+                id="register-password-error"
+                className="mt-1 text-sm text-red-400"
+              >
                 {errors.password.message}
               </p>
             )}

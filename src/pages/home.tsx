@@ -26,7 +26,7 @@ export default function Home() {
           <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             Luce impecable
             <br />
-            <span className="text-yellow-400">Sientete impecable.</span>
+            <span className="text-yellow-400">Siéntete impecable.</span>
           </h1>
 
           <p className="max-w-lg text-base leading-7 text-gray-200 sm:text-lg">

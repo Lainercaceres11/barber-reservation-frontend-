@@ -3,7 +3,7 @@ import { Scissors, Home, SearchX } from "lucide-react";
 
 const NotFound = () => {
   return (
-    <main className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-[#111110] px-6 py-16 text-white">
+    <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-[#111110] px-6 py-16 text-white">
    
       <div className="pointer-events-none absolute -right-32 -top-32 size-96 rounded-full bg-yellow-400/5 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-32 -left-32 size-96 rounded-full bg-yellow-400/5 blur-3xl" />
@@ -16,7 +16,7 @@ const NotFound = () => {
 
      
         <p className="mb-3 text-sm font-bold uppercase tracking-[0.35em] text-yellow-400">
-          Looks like a bad cut
+          Parece que algo salió mal
         </p>
 
         <h1 className="text-8xl font-black tracking-tighter text-white sm:text-9xl">
@@ -58,7 +58,7 @@ const NotFound = () => {
           <span className="h-px w-10 bg-neutral-700" />
         </div>
       </div>
-    </main>
+    </section>
   );
 };
 

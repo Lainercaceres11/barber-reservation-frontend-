@@ -23,11 +23,15 @@ export default function ServicesSelector({
 
   if (isError) {
     console.error("Error al obtener servicios:", error?.cause);
-    return <p className="text-red-500">No se pudieron cargar los barbers.</p>;
+    return (
+      <p role="alert" className="text-red-500">
+        No se pudieron cargar los barberos.
+      </p>
+    );
   }
 
   return (
-    <section className="mx-auto p-4 bg-black min-h-screen">
+    <section className="mx-auto bg-black p-4">
       <div className="bg-[#0a0a0a] flex items-center justify-center font-sans">
         <div className="bg-[#111111] border border-neutral-800 rounded-2xl p-6 sm:p-8 w-full max-w-3xl shadow-2xl shadow-black/50">
           <h2 className="text-xl font-bold text-white uppercase tracking-wider mb-6">
@@ -47,14 +51,14 @@ export default function ServicesSelector({
                     : "border-neutral-800 bg-[#161616] hover:border-neutral-600"
                 }`}
               >
-                <article className="group flex w-full bg-[#161616] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+                <div className="group flex w-full bg-[#161616] rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
                   <div className="w-25 h-25 shrink-0 overflow-hidden relative">
                     <img
                       src={
                         barber.image_url ||
                         "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?q=80&w=800&auto=format&fit=crop"
                       }
-                      alt={barber.name}
+                      alt=""
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     />
                   </div>
@@ -69,13 +73,14 @@ export default function ServicesSelector({
                       {barber.phone}
                     </p>
                   </div>
-                </article>
+                </div>
               </button>
             ))}
           </div>
 
           <div className="flex items-center justify-between mt-8 pt-6 border-t border-neutral-800">
             <button
+              type="button"
               onClick={onBack}
               className="text-neutral-300 hover:text-white font-medium text-sm transition-colors"
             >
@@ -83,8 +88,10 @@ export default function ServicesSelector({
             </button>
 
             <button
+              type="button"
+              disabled={selectedBarberId === null}
               onClick={onNext}
-              className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-lg transition-colors duration-200 text-sm"
+              className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-2 px-6 rounded-lg transition-colors duration-200 text-sm disabled:cursor-not-allowed disabled:opacity-50"
             >
               Siguiente
               <ChevronRight size={16} strokeWidth={2.5} />

@@ -3,7 +3,6 @@ import { ProfileSkeleton } from "@/components/skeletons/profile-skeleton";
 import useAppoitments from "@/hooks/use-appoitments";
 import { useAuth } from "@/hooks/use-auth";
 import {
-  Pencil,
   Mail,
   Calendar,
   Scissors,
@@ -37,19 +36,19 @@ export default function Profile() {
 
   const stats = [
     {
-      label: "Upcoming",
+      label: "Próximas",
       value: upcomingCount,
       icon: Calendar,
       color: "text-[#d4b06a]",
     },
     {
-      label: "Completed",
+      label: "Completadas",
       value: completedCount,
       icon: Scissors,
       color: "text-green-500",
     },
     {
-      label: "Total Visits",
+      label: "Visitas realizadas",
       value: totalVisits,
       icon: Star,
       color: "text-white",
@@ -90,10 +89,6 @@ export default function Profile() {
             </div>
           </div>
 
-          <button className="flex items-center gap-2 text-neutral-300 hover:text-white font-medium text-sm transition-colors px-4 py-2 rounded-lg hover:bg-neutral-800">
-            <Pencil size={16} />
-            Editar
-          </button>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">

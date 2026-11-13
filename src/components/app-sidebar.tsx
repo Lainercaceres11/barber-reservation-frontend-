@@ -114,32 +114,44 @@ export function AppSidebar() {
         </SidebarHeader>
 
         <SidebarContent>
-          <SidebarGroup>
-            <SidebarMenu className="flex flex-col gap-2">
-              {menuItems
-                .filter((item) => {
-                  if (item.url === "/barber-panel") {
-                    return isBarber;
-                  }
+          <nav aria-label="Navegación principal">
+            <SidebarGroup>
+              <SidebarMenu className="flex flex-col gap-2">
+                {menuItems
+                  .filter((item) => {
+                    if (item.url === "/barber-panel") {
+                      return isBarber;
+                    }
 
-                  if (item.url === "/appointments") {
-                    return user?.role === "customer";
-                  }
+                    if (item.url === "/appointments") {
+                      return user?.role === "customer";
+                    }
 
-                  if (item.url === "/books") {
-                    return user?.role === "customer";
-                  }
+                    if (item.url === "/books") {
+                      return user?.role === "customer";
+                    }
 
-                  return true;
-                })
-                .map((item) => {
-                  const isActive = location.pathname === item.url;
+                    return true;
+                  })
+                  .map((item) => {
+                    const isActive = location.pathname === item.url;
 
-                  return (
-                    <SidebarMenuItem key={item.url}>
-                      <SidebarMenuButton
-                        isActive={isActive}
-                        className={`
+                    return (
+                      <SidebarMenuItem key={item.url}>
+                        <SidebarMenuButton
+                          isActive={isActive}
+                          render={
+                            <Link
+                              to={item.url}
+                              aria-current={isActive ? "page" : undefined}
+                              onClick={() => {
+                                if (isMobile) {
+                                  setOpenMobile(false);
+                                }
+                              }}
+                            />
+                          }
+                          className={`
                 h-11 w-full rounded-lg
                 transition-all duration-300 ease-in-out
                 hover:translate-x-1
@@ -149,15 +161,6 @@ export function AppSidebar() {
                     : "text-muted-foreground hover:bg-[#27241a]/70 hover:text-yellow-300"
                 }
               `}
-                      >
-                        <Link
-                          to={item.url}
-                          onClick={() => {
-                            if (isMobile) {
-                              setOpenMobile(false);
-                            }
-                          }}
-                          className="relative flex h-full w-full items-center gap-3 px-3"
                         >
                           {isActive && (
                             <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r-full bg-yellow-400" />
@@ -172,13 +175,13 @@ export function AppSidebar() {
                           </span>
 
                           <span className="font-medium">{item.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  );
-                })}
-            </SidebarMenu>
-          </SidebarGroup>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    );
+                  })}
+              </SidebarMenu>
+            </SidebarGroup>
+          </nav>
         </SidebarContent>
 
         <SidebarFooter>

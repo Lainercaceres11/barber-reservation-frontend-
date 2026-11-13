@@ -51,6 +51,7 @@ export const CreateAppoitment = () => {
           {steps.map((label, index) => (
             <li
               key={label}
+              aria-current={step === index ? "step" : undefined}
               className={`border-b-2 pb-3 text-sm ${
                 step === index
                   ? "border-yellow-400 text-yellow-400"

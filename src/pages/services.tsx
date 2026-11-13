@@ -2,6 +2,7 @@ import Title from "@/components/title";
 import WhyChooseKlip from "@/components/why-choose-kyp";
 import useServices from "@/hooks/use-services";
 import { currencyFormatter } from "@/utils/format-price";
+import { Link } from "react-router";
 
 type ServicesProps = {
   isHome?: boolean;
@@ -12,6 +13,7 @@ const FALLBACK_IMAGE =
 
 export default function Services({ isHome }: ServicesProps) {
   const { services, isLoading, isError, error } = useServices();
+  const Heading = isHome ? "h2" : "h1";
 
   if (isLoading) {
     return (
@@ -43,18 +45,18 @@ export default function Services({ isHome }: ServicesProps) {
         <Title
           className="max-w-6xl mx-auto"
           subtitle={{ number: "01", content: "Servicios" }}
-          title="Qué hacemos?"
+          title="¿Qué hacemos?"
         />
       )}
       <div className="mx-auto max-w-6xl py-10 text-center md:py-16">
         <p className="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-yellow-500">
-          The KLIP experience
+          La experiencia KLIP
         </p>
 
-        <h2 className="mx-auto max-w-4xl text-4xl font-black uppercase leading-[1.05] tracking-tight text-white sm:text-5xl md:text-7xl">
+        <Heading className="mx-auto max-w-4xl text-4xl font-black uppercase leading-[1.05] tracking-tight text-white sm:text-5xl md:text-7xl">
           Más que un simple corte de pelo
           <span className="mt-2 block text-yellow-400">Es tu estilo</span>
-        </h2>
+        </Heading>
 
         <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-neutral-400 sm:text-base">
           Cortes de precisión. Cuidado personal experto. Un look que habla por
@@ -80,7 +82,7 @@ export default function Services({ isHome }: ServicesProps) {
             <div className="relative h-56 w-full overflow-hidden">
               <img
                 src={service.image_url || FALLBACK_IMAGE}
-                alt={service.name}
+                alt=""
                 loading="lazy"
                 className="h-full w-full object-cover bg-neutral-900 transition-transform duration-500 ease-out group-hover:scale-105"
               />
@@ -117,14 +119,18 @@ export default function Services({ isHome }: ServicesProps) {
                   {service.duration_minutes} min
                 </div>
 
-                <button className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black text-sm font-bold py-2.5 px-5 rounded-lg transition-colors duration-200">
-                  Book
+                <Link
+                  to="/books"
+                  className="flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black text-sm font-bold py-2.5 px-5 rounded-lg transition-colors duration-200"
+                >
+                  Agendar
                   <svg
                     className="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
@@ -133,7 +139,7 @@ export default function Services({ isHome }: ServicesProps) {
                       d="M14 5l7 7m0 0l-7 7m7-7H3"
                     />
                   </svg>
-                </button>
+                </Link>
               </div>
             </div>
           </article>

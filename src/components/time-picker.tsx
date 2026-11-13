@@ -42,13 +42,20 @@ export function DatePickerTime({
   onChange,
 }: DatePickerTimeProps) {
   const [open, setOpen] = React.useState(false);
+  const dateId = React.useId();
+  const dateLabelId = React.useId();
+  const dateValueId = React.useId();
+  const timeId = React.useId();
+  const timeLabelId = React.useId();
+  const timeErrorId = React.useId();
+  const timeStatusId = React.useId();
 
-  const date = value ? parseISO(value) : undefined;
+  const date = value ? parseISO(value.slice(0, 10)) : undefined;
   const selectedDate = date && !Number.isNaN(date.getTime()) ? date : undefined;
 
   const dateString = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
 
-  const time = selectedDate ? format(selectedDate, "HH:mm") : "";
+  const time = value.match(/T(\d{2}:\d{2})$/)?.[1] ?? "";
 
   const { data, isLoading, isError } = useBarberAvailability(
     barberId,
@@ -129,7 +136,7 @@ export function DatePickerTime({
     const month = String(newDate.getMonth() + 1).padStart(2, "0");
     const day = String(newDate.getDate()).padStart(2, "0");
 
-    onChange(`${year}-${month}-${day}T${time || ""}`);
+    onChange(`${year}-${month}-${day}`);
   };
 
   const updateTime = (newTime: string) => {
@@ -143,7 +150,11 @@ export function DatePickerTime({
   return (
     <FieldGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2">
       <Field className="gap-2">
-        <FieldLabel className="flex items-center gap-2 text-sm font-semibold text-neutral-200">
+        <FieldLabel
+          id={dateLabelId}
+          htmlFor={dateId}
+          className="flex items-center gap-2 text-sm font-semibold text-neutral-200"
+        >
           <CalendarDays size={16} className="text-yellow-500" />
           Fecha
         </FieldLabel>
@@ -153,10 +164,12 @@ export function DatePickerTime({
             render={
               <Button
                 type="button"
+                id={dateId}
+                aria-labelledby={`${dateLabelId} ${dateValueId}`}
                 variant="outline"
                 className="h-12 w-full justify-between rounded-xl border-neutral-800 bg-[#191919] px-4 font-normal text-white hover:bg-neutral-800 hover:text-white"
               >
-                <span className="truncate">
+                <span id={dateValueId} className="truncate">
                   {selectedDate
                     ? format(selectedDate, "PPP", { locale: es })
                     : "Seleccionar fecha"}
@@ -191,12 +204,31 @@ export function DatePickerTime({
       </Field>
 
       <Field className="gap-2">
-        <FieldLabel className="flex items-center gap-2 text-sm font-semibold text-neutral-200">
+        <FieldLabel
+          id={timeLabelId}
+          htmlFor={timeId}
+          className="flex items-center gap-2 text-sm font-semibold text-neutral-200"
+        >
           <Clock3 size={16} className="text-yellow-500" />
           Horarios disponibles
         </FieldLabel>
 
         <select
+          id={timeId}
+          aria-labelledby={timeLabelId}
+          aria-invalid={
+            Boolean(time) &&
+            !isLoading &&
+            !isError &&
+            !availableTimes.includes(time)
+          }
+          aria-describedby={
+            isError
+              ? timeErrorId
+              : !isLoading && dateString && !availableTimes.length
+                ? timeStatusId
+                : undefined
+          }
           value={time}
           onChange={(event) => updateTime(event.target.value)}
           disabled={!dateString || isLoading || !availableTimes.length}
@@ -218,13 +250,13 @@ export function DatePickerTime({
         </select>
 
         {isError && (
-          <p className="text-sm text-red-400">
+          <p id={timeErrorId} role="alert" className="text-sm text-red-400">
             No se pudieron consultar los horarios.
           </p>
         )}
 
         {!isLoading && dateString && !isError && !availableTimes.length && (
-          <p className="text-xs text-neutral-400">
+          <p id={timeStatusId} role="status" className="text-xs text-neutral-400">
             No hay horarios disponibles para esta fecha.
           </p>
         )}

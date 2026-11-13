@@ -35,8 +35,14 @@ export default function AppointmentDateForm({
     event.preventDefault();
     setValidationError("");
 
-    if (serviceId === null || barberId === null || !startsAt) {
-      setValidationError("Selecciona el servicio, el barbero y la fecha.");
+    if (
+      serviceId === null ||
+      barberId === null ||
+      !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(startsAt)
+    ) {
+      setValidationError(
+        "Selecciona el servicio, el barbero, la fecha y una hora disponible.",
+      );
       return;
     }
 

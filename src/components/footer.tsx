@@ -139,7 +139,7 @@ export default function Footer() {
             </ul>
 
             <Link
-              to="/booking"
+              to="/books"
               className="mt-6 inline-flex items-center gap-2 rounded-lg bg-yellow-400 px-5 py-3 text-sm font-bold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-yellow-300"
             >
               Reserva tu cita
@@ -151,7 +151,7 @@ export default function Footer() {
         {/* Barra inferior */}
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} Flip Barbershop. Todos los derechos
+            © {new Date().getFullYear()} Klip Barbershop. Todos los derechos
             reservados.
           </p>
 
